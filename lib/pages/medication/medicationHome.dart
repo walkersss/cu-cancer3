@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:cu_cancer/pages/medication/addmedication.dart';
+import 'package:cu_cancer/pages/medication/viewmedication.dart';
 
 class Medication extends StatefulWidget {
   @override
@@ -36,7 +38,7 @@ class _MedicationState extends State<Medication> {
                           children: <Widget>[
                             OutlinedButton.icon(
                               onPressed: () {
-                                print('pressed');
+                                Navigator.pushNamed(context, '/viewmedication');
                               },
                               label: Text(
                                 'View Medication',
@@ -68,10 +70,10 @@ class _MedicationState extends State<Medication> {
                           children: <Widget>[
                             OutlinedButton.icon(
                               onPressed: () {
-                                print('pressed');
+                                Navigator.pushNamed(context, '/addmedication');
                               },
                               label: Text(
-                                'New Medication',
+                                'Add New Medication',
                                 textAlign: TextAlign.end,
                               ),
                               icon: Icon(Icons.arrow_right),
