@@ -3,6 +3,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:cu_cancer/shared/constants.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:intl/intl.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class PainAdd extends StatefulWidget {
   @override
@@ -10,6 +11,13 @@ class PainAdd extends StatefulWidget {
 }
 
 class _PainAddState extends State<PainAdd> {
+  CalendarController _controller;
+  @override
+  void initState() {
+    super.initState();
+    _controller = CalendarController();
+  }
+
   final _formKey = GlobalKey<FormBuilderState>();
   bool autovalidate;
   final format = DateFormat.yMd();
@@ -28,8 +36,13 @@ class _PainAddState extends State<PainAdd> {
       ),
       body: Container(
         decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/medicalbg.jpg'), fit: BoxFit.cover)),
+          image: DecorationImage(
+            image: AssetImage('assets/medicalbg.jpg'),
+            fit: BoxFit.cover,
+            colorFilter: new ColorFilter.mode(
+                Colors.black.withOpacity(0.5), BlendMode.dstATop),
+          ),
+        ),
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -63,23 +76,69 @@ class _PainAddState extends State<PainAdd> {
                           }).toList(),
                           onChanged: (val) =>
                               setState(() => _currentScale = val)),
-
+                      SizedBox(
+                        height: 20,
+                      ),
                       Text(
                         'Date & Time',
                         style: TextStyle(fontSize: 15),
                       ),
-                      Text('(${format.pattern})'),
+                      TableCalendar(
+                          initialCalendarFormat: CalendarFormat.week,
+                          calendarStyle: CalendarStyle(
+                              todayColor: Colors.orange,
+                              selectedColor: myHexColor2,
+                              todayStyle: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.white)),
+                          headerStyle: HeaderStyle(
+                            centerHeaderTitle: true,
+                            formatButtonDecoration: BoxDecoration(
+                              color: myHexColor2,
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            formatButtonTextStyle:
+                                TextStyle(color: Colors.white),
+                            formatButtonShowsNext: false,
+                          ),
+                          //startingDayOfWeek: StartingDayOfWeek.monday,
+                          onDaySelected: (date, events, _) {
+                            print(date.toIso8601String());
+                          },
+                          builders: CalendarBuilders(
+                            selectedDayBuilder: (context, date, events) =>
+                                Container(
+                              margin: const EdgeInsets.all(4.0),
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: myHexColor2,
+                                borderRadius: BorderRadius.circular(10.0),
+                                //shape: BoxShape.circle
+                              ),
+                              child: Text(date.day.toString(),
+                                  style: TextStyle(color: Colors.white)),
+                            ),
+                            todayDayBuilder: (context, date, events) =>
+                                Container(
+                              margin: const EdgeInsets.all(4.0),
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: Colors.orange,
+                                borderRadius: BorderRadius.circular(10.0),
+                                //shape: BoxShape.circle
+                              ),
+                              child: Text(date.day.toString(),
+                                  style: TextStyle(color: Colors.white)),
+                            ),
+                          ),
+                          calendarController: _controller),
                       DateTimeField(
-                        format: format,
-                        onShowPicker: (context, currentValue) {
-                          return showDatePicker(
-                              context: context,
-                              firstDate: DateTime(2019),
-                              initialDate: currentValue ?? DateTime.now(),
-                              lastDate: DateTime(2100));
-                        },
-                      ),
-                      DateTimeField(
+                        decoration: InputDecoration(
+                            hintText: 'Time',
+                            enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.black, width: 2))),
                         format: format2,
                         onShowPicker: (context, currentValue) async {
                           final time = await showTimePicker(

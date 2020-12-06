@@ -27,6 +27,8 @@ dependencies:
   flutter_local_notifications: ^3.0.1+7
   flutter_form_builder: ^4.0.2
   datetime_picker_formfield: ^1.0.0
+  table_calendar: ^2.3.1
+  speech_to_text: ^3.0.1
 
 
   # The following adds the Cupertino Icons font to your application.
