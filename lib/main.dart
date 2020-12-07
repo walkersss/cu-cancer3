@@ -17,7 +17,6 @@ import 'package:provider/provider.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 //final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 //  FlutterLocalNotificationsPlugin();
