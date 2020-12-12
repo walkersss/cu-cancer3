@@ -29,7 +29,7 @@ class Appointment extends StatelessWidget {
                           children: <Widget>[
                             OutlinedButton.icon(
                               onPressed: () {
-                                print('pressed');
+                                Navigator.pushNamed(context, '/appointment');
                               },
                               label: Text(
                                 'View Appointment',
