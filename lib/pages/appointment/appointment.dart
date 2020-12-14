@@ -26,15 +26,54 @@ class _ViewAppointmentState extends State<ViewAppointment> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            TableCalendar(
-                calendarController: _calendarController,
-                headerStyle: HeaderStyle(formatButtonShowsNext: false),
-                builders: CalendarBuilders(
-                  selectedDayBuilder: (context, date, events) =>
-                      Text(date.day.toString()),
-                ))
+            Card(
+              clipBehavior: Clip.antiAlias,
+              margin: const EdgeInsets.all(8.0),
+              child: TableCalendar(
+                  calendarController: _calendarController,
+                  calendarStyle: CalendarStyle(
+                      todayColor: Colors.teal[700],
+                      selectedColor: Colors.blue[100],
+                      selectedStyle: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 18.0),
+                      todayStyle: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.0,
+                        color: Colors.white,
+                      )),
+                  headerStyle: HeaderStyle(
+                    formatButtonShowsNext: false,
+                    headerMargin: const EdgeInsets.only(bottom: 8.0),
+                    formatButtonDecoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12)),
+                    leftChevronIcon: Icon(
+                      Icons.chevron_left,
+                      color: Colors.white,
+                    ),
+                    rightChevronIcon: Icon(
+                      Icons.chevron_right,
+                      color: Colors.white,
+                    ),
+                    decoration: BoxDecoration(color: Colors.teal[400]),
+                    titleTextStyle: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  builders: CalendarBuilders(
+                    selectedDayBuilder: (context, date, events) =>
+                        Text(date.day.toString()),
+                  )),
+            )
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.pushNamed(context, '/addEvent');
+        },
       ),
     );
   }

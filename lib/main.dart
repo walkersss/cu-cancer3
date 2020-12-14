@@ -12,6 +12,7 @@ import 'package:cu_cancer/pages/pain/painAdd.dart';
 import 'package:cu_cancer/pages/medication/addmedication.dart';
 import 'package:cu_cancer/pages/medication/viewmedication.dart';
 import 'package:cu_cancer/pages/appointment/appointment.dart';
+import 'package:cu_cancer/pages/appointment/addEvent.dart';
 //import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 //import 'package:flutter_local_notifications_extended/flutter_local_notifications_extended.dart';
 import 'package:provider/provider.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
           '/addmedication': (context) => AddMedication(),
           '/viewmedication': (context) => ViewMedication(),
           '/appointment': (context) => ViewAppointment(),
+          '/addEvent': (context) => AddEvent(),
         },
         localizationsDelegates: [
           FormBuilderLocalizations.delegate,
