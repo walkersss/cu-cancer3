@@ -62,8 +62,28 @@ class _ViewAppointmentState extends State<ViewAppointment> {
                         fontWeight: FontWeight.bold),
                   ),
                   builders: CalendarBuilders(
-                    selectedDayBuilder: (context, date, events) =>
-                        Text(date.day.toString()),
+                    selectedDayBuilder: (context, date, events) => Container(
+                      margin: const EdgeInsets.all(4.0),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: Colors.teal[300],
+                        borderRadius: BorderRadius.circular(10.0),
+                        //shape: BoxShape.circle
+                      ),
+                      child: Text(date.day.toString(),
+                          style: TextStyle(color: Colors.white)),
+                    ),
+                    todayDayBuilder: (context, date, events) => Container(
+                      margin: const EdgeInsets.all(4.0),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: Colors.orange,
+                        borderRadius: BorderRadius.circular(10.0),
+                        //shape: BoxShape.circle
+                      ),
+                      child: Text(date.day.toString(),
+                          style: TextStyle(color: Colors.white)),
+                    ),
                   )),
             )
           ],
@@ -72,7 +92,8 @@ class _ViewAppointmentState extends State<ViewAppointment> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          Navigator.pushNamed(context, '/addEvent');
+          Navigator.pushNamed(context, '/addEvent',
+              arguments: _calendarController.selectedDay);
         },
       ),
     );

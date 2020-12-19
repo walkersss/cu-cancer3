@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:intl/intl.dart';
 
 class AddEvent extends StatefulWidget {
+  final DateTime selectedDate;
+
+  const AddEvent({Key key, this.selectedDate}) : super(key: key);
   @override
   _AddEventState createState() => _AddEventState();
 }
@@ -81,33 +85,43 @@ class _AddEventState extends State<AddEvent> {
                 name: "type",
                 decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: "Choose Type of Appointment",
-                    prefixIcon: Icon(Icons.calendar_view_day)),
-                options: _types
+                    labelText: "Choose Department(s) Involved ",
+                    prefixIcon: Icon(Icons.sensor_door_rounded)),
+                options: _department
                     .map((type) => FormBuilderFieldOption(
                           value: type,
                           child: Text('$type'),
                         ))
                     .toList(),
               ),
+              Divider(),
               FormBuilderDateTimePicker(
                 name: 'time',
                 inputType: InputType.time,
                 decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.time_to_leave),
                   labelText: 'Appointment Time',
                 ),
                 // initialTime: TimeOfDay(hour: 8, minute: 0),
                 initialValue: DateTime.now(),
                 // enabled: true,
               ),
+              Divider(),
               FormBuilderDateTimePicker(
                 name: 'date',
+                initialValue: widget.selectedDate ?? DateTime.now(),
+                fieldHintText: "Add Date",
                 inputType: InputType.date,
                 decoration: InputDecoration(
-                  labelText: 'Appointment Date',
-                ),
-                initialValue: DateTime.now(),
+                    labelText: 'Appointment Date',
+                    prefixIcon: Icon(Icons.date_range)),
+                format: DateFormat('EEEE, dd MMMM, yyyy'),
               ),
+              Divider(),
+              ElevatedButton(
+                onPressed: () async {},
+                child: Text("Submit"),
+              )
             ],
           ))
         ],
