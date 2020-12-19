@@ -82,15 +82,15 @@ class _AddEventState extends State<AddEvent> {
               ),
               Divider(),
               FormBuilderFilterChip(
-                name: "type",
+                name: "department",
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     labelText: "Choose Department(s) Involved ",
                     prefixIcon: Icon(Icons.sensor_door_rounded)),
                 options: _department
-                    .map((type) => FormBuilderFieldOption(
-                          value: type,
-                          child: Text('$type'),
+                    .map((department) => FormBuilderFieldOption(
+                          value: department,
+                          child: Text('$department'),
                         ))
                     .toList(),
               ),
