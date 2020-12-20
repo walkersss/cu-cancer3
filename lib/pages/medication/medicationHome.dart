@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cu_cancer/pages/medication/addmedication.dart';
-import 'package:cu_cancer/pages/medication/viewmedication.dart';
+//import 'package:cu_cancer/pages/medication/addmedication.dart';
+//import 'package:cu_cancer/pages/medication/viewmedication.dart';
 
 class Medication extends StatefulWidget {
   @override

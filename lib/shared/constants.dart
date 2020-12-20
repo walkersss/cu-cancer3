@@ -39,4 +39,16 @@ const morePainInputDecoration = InputDecoration(
   ),
 );
 
-const List<String> scale = ['1', '2', '3', '4', '5'];
+const List<String> scales = ['1', '2', '3', '4', '5'];
+const List<String> locations = [
+  'Head',
+  'Shoulder',
+  'Left Hand',
+  'Right Hand',
+  'Left Arm',
+  'Right Arm',
+  'Upper Body',
+  'Lower Body',
+  'Legs',
+  'Feet',
+];
