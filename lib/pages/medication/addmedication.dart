@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-<<<<<<< HEAD
-//import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
-=======
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
->>>>>>> fda5e726589312151e493296d870df1008f96168
 
 class AddMedication extends StatefulWidget {
   @override
