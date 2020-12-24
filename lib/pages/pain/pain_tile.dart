@@ -14,7 +14,7 @@ class PainTile extends StatelessWidget {
         child: ListTile(
           leading: CircleAvatar(
             radius: 25.0,
-            backgroundColor: Colors.red[100],
+            backgroundColor: Colors.red[500],
             //backgroundImage: AssetImage('assets/coffee_icon.png'),
           ),
           title: Text('${notes.date}'),

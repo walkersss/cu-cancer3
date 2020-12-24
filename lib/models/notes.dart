@@ -3,8 +3,8 @@
 class Notes {
   String location;
   String scale;
-  DateTime date;
-  DateTime time;
+  String date;
+  String time;
   //String uid;
   String description;
 
@@ -42,7 +42,7 @@ class Notes {
     //uid: map['userID']
   }
 
-  factory Notes.fromDS(String id, Map<String, dynamic> data) {
+  /*factory Notes.fromDS(String id, Map<String, dynamic> data) {
     if (data == null) return null;
 
     return Notes(
@@ -51,5 +51,5 @@ class Notes {
       description: data['description'],
       date: DateTime(data['date']),
     );
-  }
+  }*/
 }

@@ -27,7 +27,13 @@ class _PainAddState extends State<PainAdd> {
   final db = Firestore.instance;
   //final Notes notes;
   //_PainAddState({Key key, @required this.notes}) : super(key: key);
-  final List<String> scales = ['1', '2', '3', '4', '5'];
+  final List<String> scales = [
+    '1-V. Mild',
+    '2-Mild',
+    '3-Moderate',
+    '4-Severe',
+    '5-V. Severe'
+  ];
   final List<String> locations = [
     'Head',
     'Shoulder',

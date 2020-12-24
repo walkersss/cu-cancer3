@@ -1,4 +1,4 @@
-//import 'package:cu_cancer/models/notes.dart';
+import 'package:cu_cancer/models/notes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cu_cancer/models/cell.dart';
 import 'package:intl/intl.dart';
@@ -44,5 +44,20 @@ class DatabaseService {
       'time': time,
       'description': desc,
     });
+  }
+
+  List<Notes> _noteListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return Notes(
+          location: doc.data['location'] ?? '',
+          scale: doc.data['scale'] ?? '',
+          date: doc.data['date'] ?? '',
+          time: doc.data['time'] ?? '',
+          description: doc.data['description'] ?? '');
+    }).toList();
+  }
+
+  Stream<List<Notes>> get notes {
+    return notesCollection.snapshots().map(_noteListFromSnapshot);
   }
 }
