@@ -220,8 +220,8 @@ class _PainAddState extends State<PainAdd> {
                         ElevatedButton(
                           //onPressed: _sendToServer(),
                           onPressed: () async {
-                            final uid =
-                                await Provider.of(context).auth.getCurrentUID();
+                            //final uid =
+                            //   await Provider.of(context).auth.getCurrentUID();
                             _formKey.currentState.save();
                             //final data = Map<String, dynamic>.from(
                             //  _formKey.currentState.value);
