@@ -30,7 +30,7 @@ dependencies:
   date_time_picker: "^1.1.0"
   table_calendar: ^2.3.1
   speech_to_text: ^3.0.1
-  firebase_helpers: ^0.2.2
+  
 
 
   # The following adds the Cupertino Icons font to your application.

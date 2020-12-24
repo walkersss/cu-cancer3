@@ -1,12 +1,12 @@
 //import 'package:cu_cancer/models/user.dart';
 
 class Notes {
-  final String location;
-  final int scale;
-  final DateTime date;
-  final DateTime time;
-  final String uid;
-  final String description;
+  String location;
+  String scale;
+  DateTime date;
+  DateTime time;
+  //String uid;
+  String description;
 
   Notes({
     this.location,
@@ -14,17 +14,18 @@ class Notes {
     this.date,
     this.time,
     this.description,
-    this.uid,
+    //this.uid,
   });
 
-  Map<String, dynamic> toMap(String location, int scale, String date) {
+  Map<String, dynamic> toJson(String location, String scale, String date,
+      String time, String description) {
     return {
       'location': location,
       'scale': scale,
       'date': date.toString(),
       'time': time.toString(),
       'description': description,
-      'userID': uid,
+      //'userID': uid,
     };
   }
 
@@ -32,12 +33,13 @@ class Notes {
     if (map == null) return null;
 
     return Notes(
-        location: map['location'],
-        scale: map['scale'],
-        date: map['date'],
-        time: map['time'],
-        description: map['description'],
-        uid: map['userID']);
+      location: map['location'],
+      scale: map['scale'],
+      date: map['date'],
+      time: map['time'],
+      description: map['description'],
+    );
+    //uid: map['userID']
   }
 
   factory Notes.fromDS(String id, Map<String, dynamic> data) {
@@ -45,7 +47,7 @@ class Notes {
 
     return Notes(
       location: data['location'],
-      uid: id,
+      //uid: id,
       description: data['description'],
       date: DateTime(data['date']),
     );

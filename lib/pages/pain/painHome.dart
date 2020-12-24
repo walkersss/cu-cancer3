@@ -30,6 +30,7 @@ class Pain extends StatelessWidget {
                             OutlinedButton.icon(
                               onPressed: () {
                                 print('pressed');
+                                Navigator.pushNamed(context, '/viewNote');
                               },
                               label: Text(
                                 'View Notes',

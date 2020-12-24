@@ -9,6 +9,7 @@ import 'package:cu_cancer/services/database.dart';
 //import 'package:cu_cancer/models/notes.dart';
 import 'package:provider/provider.dart';
 import 'package:cu_cancer/models/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PainAdd extends StatefulWidget {
   @override
@@ -23,6 +24,9 @@ class _PainAddState extends State<PainAdd> {
     //_controller = CalendarController();
   }
 
+  final db = Firestore.instance;
+  //final Notes notes;
+  //_PainAddState({Key key, @required this.notes}) : super(key: key);
   final List<String> scales = ['1', '2', '3', '4', '5'];
   final List<String> locations = [
     'Head',
@@ -216,6 +220,8 @@ class _PainAddState extends State<PainAdd> {
                         ElevatedButton(
                           //onPressed: _sendToServer(),
                           onPressed: () async {
+                            final uid =
+                                await Provider.of(context).auth.getCurrentUID();
                             _formKey.currentState.save();
                             //final data = Map<String, dynamic>.from(
                             //  _formKey.currentState.value);
