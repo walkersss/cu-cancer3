@@ -9,7 +9,7 @@ import 'package:cu_cancer/services/database.dart';
 //import 'package:cu_cancer/models/notes.dart';
 import 'package:provider/provider.dart';
 import 'package:cu_cancer/models/user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PainAdd extends StatefulWidget {
   @override
@@ -17,16 +17,11 @@ class PainAdd extends StatefulWidget {
 }
 
 class _PainAddState extends State<PainAdd> {
-  //CalendarController _controller;
   @override
   void initState() {
     super.initState();
-    //_controller = CalendarController();
   }
 
-  final db = Firestore.instance;
-  //final Notes notes;
-  //_PainAddState({Key key, @required this.notes}) : super(key: key);
   final List<String> scales = [
     '1-V. Mild',
     '2-Mild',
@@ -50,7 +45,6 @@ class _PainAddState extends State<PainAdd> {
   final format = DateFormat.yMd();
   final format2 = DateFormat("hh:mm a");
   String location, currentScale, date, time, desc;
-  //DateTime ;
 
   @override
   Widget build(BuildContext context) {
@@ -226,17 +220,10 @@ class _PainAddState extends State<PainAdd> {
                         ElevatedButton(
                           //onPressed: _sendToServer(),
                           onPressed: () async {
-                            //final uid =
-                            //   await Provider.of(context).auth.getCurrentUID();
                             _formKey.currentState.save();
-                            //final data = Map<String, dynamic>.from(
-                            //  _formKey.currentState.value);
                             if (_formKey.currentState.validate()) {
                               DatabaseService(uid: user.uid).addNotes(
                                   location, currentScale, date, time, desc);
-
-                              Scaffold.of(context).showSnackBar(
-                                  SnackBar(content: Text('Processing Data')));
                               print(location);
                               print(currentScale);
                               print(date);

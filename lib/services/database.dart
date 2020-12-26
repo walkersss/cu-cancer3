@@ -1,4 +1,5 @@
 import 'package:cu_cancer/models/notes.dart';
+import 'package:cu_cancer/models/medicine.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cu_cancer/models/cell.dart';
 import 'package:intl/intl.dart';
@@ -11,6 +12,8 @@ class DatabaseService {
       Firestore.instance.collection('cell');
   final CollectionReference notesCollection =
       Firestore.instance.collection('notes');
+  final CollectionReference medicineCollection =
+      Firestore.instance.collection('medicine');
 
   Future updateUserData(String name, String status, int age) async {
     return await cancerCollection.document(uid).setData({
@@ -59,5 +62,31 @@ class DatabaseService {
 
   Stream<List<Notes>> get notes {
     return notesCollection.snapshots().map(_noteListFromSnapshot);
+  }
+
+  Future<void> addMedicine(String medicineName, String medicineType, int dosage,
+      String time, String interval) async {
+    return await medicineCollection.document(uid).setData({
+      'medicineName': medicineName,
+      'medicineType': medicineType,
+      'dosage': dosage,
+      'time': time,
+      'interval': interval,
+    });
+  }
+
+  List<Medicine> _medicineListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return Medicine(
+          medicineName: doc.data['medicineName'] ?? '',
+          medicineType: doc.data['medicineType'] ?? '',
+          dosage: doc.data['dosage'] ?? '',
+          time: doc.data['time'] ?? '',
+          interval: doc.data['interval'] ?? '');
+    }).toList();
+  }
+
+  Stream<List<Medicine>> get medicine {
+    return notesCollection.snapshots().map(_medicineListFromSnapshot);
   }
 }
