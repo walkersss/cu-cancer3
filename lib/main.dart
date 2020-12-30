@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
           '/appointment': (context) => ViewAppointment(),
           '/addEvent': (context) => AddEvent(),
           '/viewNote': (context) => PainDisplay(),
+          '/viewMedication': (context) => ViewMedication(),
         },
         localizationsDelegates: [
           FormBuilderLocalizations.delegate,

@@ -337,12 +337,12 @@ packages:
     source: hosted
     version: "2.1.19"
   image_picker:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: image_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.7+14"
+    version: "0.6.7+17"
   image_picker_for_web:
     dependency: transitive
     description:

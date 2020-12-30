@@ -31,10 +31,10 @@ class _MedicationState extends State<Medication> {
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(0, 200, 0, 0),
                   child: Column(
-                    //mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Row(
-                          //mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             OutlinedButton.icon(
                               onPressed: () {

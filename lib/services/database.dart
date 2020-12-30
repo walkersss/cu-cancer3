@@ -2,7 +2,7 @@ import 'package:cu_cancer/models/notes.dart';
 import 'package:cu_cancer/models/medicine.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cu_cancer/models/cell.dart';
-import 'package:intl/intl.dart';
+//import 'package:intl/intl.dart';
 
 class DatabaseService {
   final String uid;
@@ -38,6 +38,7 @@ class DatabaseService {
     return cancerCollection.snapshots().map(_cellListFromSnapshot);
   }
 
+  //add notes(for now it's updating)
   Future<void> addNotes(String location, String scale, String date, String time,
       String desc) async {
     return await notesCollection.document(uid).setData({
@@ -49,6 +50,7 @@ class DatabaseService {
     });
   }
 
+  //notes list from snapshot
   List<Notes> _noteListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return Notes(
@@ -60,10 +62,12 @@ class DatabaseService {
     }).toList();
   }
 
+  //get notes stream
   Stream<List<Notes>> get notes {
     return notesCollection.snapshots().map(_noteListFromSnapshot);
   }
 
+  //add medicine(for now it's updating)
   Future<void> addMedicine(String medicineName, String medicineType, int dosage,
       String time, String interval) async {
     return await medicineCollection.document(uid).setData({
@@ -75,6 +79,7 @@ class DatabaseService {
     });
   }
 
+  //medicine list from snapshot
   List<Medicine> _medicineListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return Medicine(
@@ -87,6 +92,6 @@ class DatabaseService {
   }
 
   Stream<List<Medicine>> get medicine {
-    return notesCollection.snapshots().map(_medicineListFromSnapshot);
+    return medicineCollection.snapshots().map(_medicineListFromSnapshot);
   }
 }
