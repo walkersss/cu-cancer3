@@ -1,15 +1,30 @@
+//import 'dart:js';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:cu_cancer/pages/home/settings_form.dart';
 import 'package:cu_cancer/services/auth.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:cu_cancer/models/cell.dart';
 import 'package:cu_cancer/services/database.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   final AuthService _auth = AuthService();
+
   final Color myHexColor = Color(0xffA3E0DA);
+
   final Color myHexColor2 = Color(0xff08AE9E);
+
+  PickedFile _imageFile;
+
+  final ImagePicker _picker = ImagePicker();
+
   @override
   Widget build(BuildContext context) {
     void _showSettingspanel() {
@@ -56,10 +71,31 @@ class Home extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Center(
-                          child: CircleAvatar(
-                            backgroundImage: AssetImage('assets/buwung.jpg'),
-                            radius: 55,
-                          ),
+                          child: Stack(children: <Widget>[
+                            CircleAvatar(
+                              backgroundImage: _imageFile == null
+                                  ? AssetImage('assets/buwung.jpg')
+                                  : FileImage(File(_imageFile.path)),
+                              radius: 70,
+                            ),
+                            Positioned(
+                                bottom: 15.0,
+                                right: 15.0,
+                                child: InkWell(
+                                  onTap: () {
+                                    showModalBottomSheet(
+                                      context: context,
+                                      builder: ((builder) =>
+                                          bottomSheet(context)),
+                                    );
+                                  },
+                                  child: Icon(
+                                    Icons.camera_alt,
+                                    color: Colors.teal,
+                                    size: 25.0,
+                                  ),
+                                ))
+                          ]),
                         ),
                         Text(
                           'NAME: Buwung Puyuh',
@@ -147,6 +183,53 @@ class Home extends StatelessWidget {
                 ),
               ),
             )));
+  }
+
+  Widget bottomSheet(context) {
+    return Container(
+      height: 100.0,
+      width: MediaQuery.of(context).size.width,
+      margin: EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 20,
+      ),
+      child: Column(
+        children: <Widget>[
+          Text('Choose profile photo', style: TextStyle(fontSize: 20.0)),
+          SizedBox(
+            height: 2.0,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ElevatedButton.icon(
+                icon: Icon(Icons.camera),
+                onPressed: () {
+                  takePhoto(ImageSource.camera);
+                },
+                label: Text('Camera'),
+              ),
+              ElevatedButton.icon(
+                onPressed: () {
+                  takePhoto(ImageSource.gallery);
+                },
+                icon: Icon(Icons.image),
+                label: Text('Gallery'),
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  void takePhoto(ImageSource source) async {
+    final pickedFile = await _picker.getImage(
+      source: source,
+    );
+    setState(() {
+      _imageFile = pickedFile;
+    });
   }
 }
 
