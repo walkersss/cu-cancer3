@@ -21,7 +21,14 @@ class _ViewMedicationState extends State<ViewMedication> {
           title: Text('Your Medication'),
           elevation: 0,
         ),
-        body: MedsList(),
+        body: SafeArea(
+          child: Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/medicalbg.jpg'),
+                      fit: BoxFit.cover)),
+              child: MedsList()),
+        ),
       ),
     );
   }

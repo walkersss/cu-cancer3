@@ -12,18 +12,13 @@ class PainTile extends StatelessWidget {
       child: Card(
         margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
         child: ListTile(
-          leading: CircleAvatar(
-            radius: 25.0,
-            backgroundColor: Colors.red[500],
-            //backgroundImage: AssetImage('assets/coffee_icon.png'),
-          ),
-          title: Text('${notes.date}'),
-          subtitle: Text('${notes.time}'
-              ','
+          leading: Icon(Icons.description_outlined),
+          title: Text('${notes.date} ${notes.time}'),
+          subtitle: Text('Location: '
               ' ${notes.location}'
-              ','
+              ', Scale: '
               '${notes.scale}'
-              ','
+              ',Notes: '
               '${notes.description}'),
         ),
       ),

@@ -11,20 +11,11 @@ class MedsTile extends StatelessWidget {
       child: Card(
         margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0),
         child: ListTile(
-          leading: CircleAvatar(
-            radius: 25.0,
-            backgroundColor: Colors.green[500],
-          ),
-          title: Text('${medicine.medicineName}'),
-          subtitle: Text('${medicine.dosage}'
-              ','
-              '${medicine.medicineType}'
-              ','
-              '${medicine.dosage}'
-              ','
-              '${medicine.time}'
-              ','
-              '${medicine.interval}'),
+          leading: Icon(Icons.local_pharmacy_outlined),
+          title: Text(
+              '${medicine.medicineName} ${medicine.dosage} ${medicine.medicineType}'),
+          subtitle: Text('${medicine.interval}'
+              ' ${medicine.time}'),
         ),
       ),
     );
