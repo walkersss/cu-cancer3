@@ -2,6 +2,7 @@ import 'package:cu_cancer/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:cu_cancer/services/auth.dart';
 import 'package:cu_cancer/shared/loading.dart';
+import 'package:flutter/services.dart';
 
 class Register extends StatefulWidget {
   final Function toggleView;
@@ -33,7 +34,7 @@ class _RegisterState extends State<Register> {
             appBar: AppBar(
               backgroundColor: myHexColor2,
               elevation: 0.0,
-              title: Text('Sign up to C U Cancer'),
+              title: Text('Register to C U Cancer'),
               actions: <Widget>[
                 FlatButton.icon(
                     onPressed: () {
@@ -45,37 +46,75 @@ class _RegisterState extends State<Register> {
             ),
             body: SingleChildScrollView(
               child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/bg-cover2.jpg'),
+                          fit: BoxFit.fill)),
+                  padding: EdgeInsets.symmetric(horizontal: 50),
                   child: Form(
                       key: _formKey,
                       child: Column(
                         children: <Widget>[
-                          SizedBox(
-                            height: 10,
-                          ),
-                          TextFormField(
-                            decoration:
-                                textInputDecoration.copyWith(hintText: 'Name'),
-                            validator: (val) =>
-                                val.length < 2 ? 'Please enter name' : null,
-                            onChanged: (val) {
-                              setState(() => name = val);
-                            },
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          TextFormField(
-                            decoration:
-                                textInputDecoration.copyWith(hintText: 'Age'),
-                            validator: (val) =>
-                                val.length == 0 ? 'Please enter age' : null,
-                            onChanged: (age) {
-                              setState(() => age = age);
-                            },
+                          Center(
+                            child: Container(
+                                alignment: Alignment.center,
+                                padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.topCenter,
+                                      child: Image(
+                                        width: 170,
+                                        height: 170,
+                                        image: AssetImage(
+                                            'assets/ic_launcher.png'),
+                                      ),
+                                    ),
+                                  ],
+                                )),
                           ),
                           SizedBox(
-                            height: 10,
+                            height: 19,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  decoration: textInputDecoration.copyWith(
+                                      hintText: 'Name'),
+                                  validator: (val) => val.length < 2
+                                      ? 'Please enter name'
+                                      : null,
+                                  onChanged: (val) {
+                                    setState(() => name = val);
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: TextFormField(
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'[0-9]')),
+                                  ],
+                                  decoration: textInputDecoration.copyWith(
+                                      hintText: 'Age'),
+                                  validator: (val) => val.length == 0
+                                      ? 'Please enter age'
+                                      : null,
+                                  onChanged: (age) {
+                                    setState(() => age = age);
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 5,
                           ),
                           TextFormField(
                             decoration: textInputDecoration.copyWith(
@@ -88,7 +127,7 @@ class _RegisterState extends State<Register> {
                             },
                           ),
                           SizedBox(
-                            height: 10,
+                            height: 17,
                           ),
                           TextFormField(
                             decoration:
@@ -100,7 +139,7 @@ class _RegisterState extends State<Register> {
                             },
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
                           TextFormField(
                             decoration: textInputDecoration.copyWith(
@@ -114,7 +153,7 @@ class _RegisterState extends State<Register> {
                             },
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
                           RaisedButton(
                               color: Colors.pink[400],
