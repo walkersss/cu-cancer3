@@ -16,7 +16,12 @@ class PainDisplay extends StatelessWidget {
             title: Text('Your Notes'),
             elevation: 0,
           ),
-          body: PainList()),
+          body: Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/medicalbg.jpg'),
+                      fit: BoxFit.cover)),
+              child: PainList())),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:cu_cancer/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:cu_cancer/services/auth.dart';
 import 'package:cu_cancer/shared/loading.dart';
+import 'package:flutter/services.dart';
 
 class Register extends StatefulWidget {
   final Function toggleView;
@@ -16,8 +17,10 @@ class _RegisterState extends State<Register> {
   final Color myHexColor = Color(0xffA3E0DA);
   final Color myHexColor2 = Color(0xff08AE9E);
 
+  final List<String> status = ['Patient', 'Survivor', 'Guardian'];
+
   String name = '';
-  String status = '';
+  String currentStatus;
   int age;
   String email = '';
   String password = '';
@@ -33,7 +36,7 @@ class _RegisterState extends State<Register> {
             appBar: AppBar(
               backgroundColor: myHexColor2,
               elevation: 0.0,
-              title: Text('Sign up to C U Cancer'),
+              title: Text('Register to C U Cancer'),
               actions: <Widget>[
                 FlatButton.icon(
                     onPressed: () {
@@ -45,39 +48,91 @@ class _RegisterState extends State<Register> {
             ),
             body: SingleChildScrollView(
               child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/bg-cover2.jpg'),
+                          fit: BoxFit.fill)),
+                  padding: EdgeInsets.symmetric(horizontal: 50),
                   child: Form(
                       key: _formKey,
                       child: Column(
                         children: <Widget>[
-                          SizedBox(
-                            height: 10,
+                          Center(
+                            child: Container(
+                                alignment: Alignment.center,
+                                padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.topCenter,
+                                      child: Image(
+                                        width: 170,
+                                        height: 170,
+                                        image: AssetImage(
+                                            'assets/ic_launcher.png'),
+                                      ),
+                                    ),
+                                  ],
+                                )),
                           ),
-                          TextFormField(
-                            decoration:
-                                textInputDecoration.copyWith(hintText: 'Name'),
-                            validator: (val) =>
-                                val.length < 2 ? 'Please enter name' : null,
-                            onChanged: (val) {
-                              setState(() => name = val);
+                          SizedBox(
+                            height: 19,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  decoration: textInputDecoration.copyWith(
+                                      hintText: 'Name'),
+                                  validator: (val) => val.length < 2
+                                      ? 'Please enter name'
+                                      : null,
+                                  onChanged: (val) {
+                                    setState(() => name = val);
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: TextFormField(
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'[0-9]')),
+                                  ],
+                                  decoration: textInputDecoration.copyWith(
+                                      hintText: 'Age'),
+                                  validator: (val) => val.length == 0
+                                      ? 'Please enter age'
+                                      : null,
+                                  onChanged: (age) {
+                                    setState(() => age = age);
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          DropdownButtonFormField(
+                            decoration: textInputDecoration,
+                            //value: currentStatus,
+                            hint: Text('survivor/patients/guardian'),
+                            items: status.map((status) {
+                              return DropdownMenuItem(
+                                  value: status, child: Text('$status'));
+                            }).toList(),
+                            onChanged: (val) =>
+                                setState(() => currentStatus = val),
+                            onSaved: (String val) {
+                              currentStatus = val;
                             },
                           ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          TextFormField(
-                            decoration:
-                                textInputDecoration.copyWith(hintText: 'Age'),
-                            validator: (val) =>
-                                val.length == 0 ? 'Please enter age' : null,
-                            onChanged: (age) {
-                              setState(() => age = age);
-                            },
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          TextFormField(
+                          /*TextFormField(
                             decoration: textInputDecoration.copyWith(
                                 hintText:
                                     'status: survivor, patients, guardian'),
@@ -86,9 +141,9 @@ class _RegisterState extends State<Register> {
                             onChanged: (val) {
                               setState(() => status = val);
                             },
-                          ),
+                          ),*/
                           SizedBox(
-                            height: 10,
+                            height: 17,
                           ),
                           TextFormField(
                             decoration:
@@ -100,7 +155,7 @@ class _RegisterState extends State<Register> {
                             },
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
                           TextFormField(
                             decoration: textInputDecoration.copyWith(
@@ -114,7 +169,7 @@ class _RegisterState extends State<Register> {
                             },
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
                           RaisedButton(
                               color: Colors.pink[400],
@@ -129,7 +184,11 @@ class _RegisterState extends State<Register> {
                                   });
                                   dynamic result =
                                       await _auth.registerWithEmailandpassword(
-                                          name, status, age, email, password);
+                                          name,
+                                          currentStatus,
+                                          age,
+                                          email,
+                                          password);
                                   if (result == null) {
                                     setState(() {
                                       error = 'please supply a valid emai';

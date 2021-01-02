@@ -31,7 +31,7 @@ class _SignInState extends State<SignIn> {
             appBar: AppBar(
               backgroundColor: myHexColor2,
               elevation: 0.0,
-              title: Text('Sign in to C U Cancer'),
+              title: Text('Log in to C U Cancer'),
               actions: <Widget>[
                 FlatButton.icon(
                     onPressed: () {
@@ -41,71 +41,114 @@ class _SignInState extends State<SignIn> {
                     label: Text('Register'))
               ],
             ),
-            body: Container(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
-                child: Form(
-                    key: _formKey,
-                    child: Column(
-                      children: <Widget>[
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration:
-                              textInputDecoration.copyWith(hintText: 'Email'),
-                          validator: (val) =>
-                              val.isEmpty ? 'Enter an email' : null,
-                          onChanged: (val) {
-                            setState(() => email = val);
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration: textInputDecoration.copyWith(
-                              hintText: 'Password'),
-                          validator: (val) => val.length < 6
-                              ? 'Enter a password 6+ chars long'
-                              : null,
-                          obscureText: true,
-                          onChanged: (val) {
-                            setState(() => password = val);
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        RaisedButton(
-                            color: Colors.pink[400],
+            body: SingleChildScrollView(
+              child: Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/bg-cover2.jpg'),
+                        fit: BoxFit.fill)),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Center(
+                        child: Container(
+                            alignment: Alignment.center,
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                            child: Stack(
+                              children: [
+                                Align(
+                                  alignment: Alignment.topCenter,
+                                  child: Image(
+                                    width: 170,
+                                    height: 170,
+                                    image: AssetImage('assets/ic_launcher.png'),
+                                  ),
+                                ),
+                              ],
+                            )),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(5, 60, 5, 49),
+                        child: Container(
+                            alignment: Alignment.center,
+                            //padding: EdgeInsets.fromLTRB(5, 25, 5, 0),
                             child: Text(
-                              'Sign In',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            onPressed: () async {
-                              if (_formKey.currentState.validate()) {
-                                setState(() => loading = true);
-                                dynamic result =
-                                    await _auth.signInWithEmailandpassword(
-                                        email, password);
-                                if (result == null) {
-                                  setState(() {
-                                    error = 'INVALID CREDENTIALS';
-                                    loading = false;
-                                  });
-                                }
-                              }
-                            }),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          error,
-                          style: TextStyle(color: Colors.red, fontSize: 14),
-                        )
-                      ],
-                    ))),
-          );
+                              'Welcome to C U Cancer',
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 30),
+                            )),
+                      ),
+                      Container(
+                          //alignment: Alignment.bottomCenter,
+                          padding: EdgeInsets.symmetric(horizontal: 50),
+                          child: Form(
+                              key: _formKey,
+                              child: Column(
+                                children: <Widget>[
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  TextFormField(
+                                    decoration: textInputDecoration.copyWith(
+                                        hintText: 'Email'),
+                                    validator: (val) =>
+                                        val.isEmpty ? 'Enter an email' : null,
+                                    onChanged: (val) {
+                                      setState(() => email = val);
+                                    },
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  TextFormField(
+                                    decoration: textInputDecoration.copyWith(
+                                        hintText: 'Password'),
+                                    validator: (val) => val.length < 6
+                                        ? 'Enter a password 6+ chars long'
+                                        : null,
+                                    obscureText: true,
+                                    onChanged: (val) {
+                                      setState(() => password = val);
+                                    },
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  RaisedButton(
+                                      color: Colors.pink[400],
+                                      child: Text(
+                                        'Sign In',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      onPressed: () async {
+                                        if (_formKey.currentState.validate()) {
+                                          setState(() => loading = true);
+                                          dynamic result = await _auth
+                                              .signInWithEmailandpassword(
+                                                  email, password);
+                                          if (result == null) {
+                                            setState(() {
+                                              error = 'INVALID CREDENTIALS';
+                                              loading = false;
+                                            });
+                                          }
+                                        }
+                                      }),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    error,
+                                    style: TextStyle(
+                                        color: Colors.red, fontSize: 14),
+                                  )
+                                ],
+                              ))),
+                    ]),
+              ),
+            ));
   }
 }
 

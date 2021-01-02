@@ -2,7 +2,7 @@ class Medicine {
   final String medicineName;
   final String medicineType;
   final int dosage;
-  final DateTime time;
+  final String time;
   final String interval;
 
   Medicine(

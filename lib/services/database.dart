@@ -42,6 +42,7 @@ class DatabaseServices {
     return cancerCollection.snapshots().map(_cellListFromSnapshot);
   }
 
+  //add notes(for now it's updating)
   Future<void> addNotes(String location, String scale, String date, String time,
       String desc) async {
     return await notesCollection.document(uid).setData({
@@ -53,6 +54,7 @@ class DatabaseServices {
     });
   }
 
+  //notes list from snapshot
   List<Notes> _noteListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return Notes(
@@ -64,10 +66,12 @@ class DatabaseServices {
     }).toList();
   }
 
+  //get notes stream
   Stream<List<Notes>> get notes {
     return notesCollection.snapshots().map(_noteListFromSnapshot);
   }
 
+  //add medicine(for now it's updating)
   Future<void> addMedicine(String medicineName, String medicineType, int dosage,
       String time, String interval) async {
     return await medicineCollection.document(uid).setData({
@@ -79,6 +83,7 @@ class DatabaseServices {
     });
   }
 
+  //medicine list from snapshot
   List<Medicine> _medicineListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return Medicine(
@@ -91,7 +96,7 @@ class DatabaseServices {
   }
 
   Stream<List<Medicine>> get medicine {
-    return notesCollection.snapshots().map(_medicineListFromSnapshot);
+    return medicineCollection.snapshots().map(_medicineListFromSnapshot);
   }
 
   Future<void> addAppointment(

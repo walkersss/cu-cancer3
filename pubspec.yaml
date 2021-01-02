@@ -30,7 +30,9 @@ dependencies:
   date_time_picker: "^1.1.0"
   table_calendar: ^2.3.1
   speech_to_text: ^3.0.1
-  riverpod: ^0.12.1
+  image_picker: ^0.6.7+17
+  flutter_launcher_icons: ^0.8.1
+  
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -46,6 +48,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/ic_launcher.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -3,6 +3,8 @@ import 'package:cu_cancer/services/database.dart';
 import 'package:cu_cancer/pages/medication/medsList.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:cu_cancer/models/notes.dart';
+import 'package:cu_cancer/pages/pain/pain_List.dart';
 
 class ViewMedication extends StatefulWidget {
   @override
@@ -12,15 +14,9 @@ class ViewMedication extends StatefulWidget {
 class _ViewMedicationState extends State<ViewMedication> {
   @override
   Widget build(BuildContext context) {
-    Color myHexColor2 = Color(0xff08AE9E);
     return StreamProvider<List<Medicine>>.value(
       value: DatabaseService().medicine,
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: myHexColor2,
-          title: Text('Your Medication'),
-          elevation: 0,
-        ),
         body: SafeArea(
           child: Container(
               decoration: BoxDecoration(
@@ -30,6 +26,22 @@ class _ViewMedicationState extends State<ViewMedication> {
               child: MedsList()),
         ),
       ),
+    );
+  }
+}
+
+class PainDisplay extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StreamProvider<List<Notes>>.value(
+      value: DatabaseService().notes,
+      child: Scaffold(
+          body: Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/medicalbg.jpg'),
+                      fit: BoxFit.cover)),
+              child: PainList())),
     );
   }
 }
