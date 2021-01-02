@@ -14,7 +14,7 @@ class _ViewMedicationState extends State<ViewMedication> {
   Widget build(BuildContext context) {
     Color myHexColor2 = Color(0xff08AE9E);
     return StreamProvider<List<Medicine>>.value(
-      value: DatabaseService().medicine,
+      value: DatabaseServices().medicine,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: myHexColor2,
