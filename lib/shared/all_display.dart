@@ -15,7 +15,7 @@ class _ViewMedicationState extends State<ViewMedication> {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<Medicine>>.value(
-      value: DatabaseService().medicine,
+      value: DatabaseServices().medicine,
       child: Scaffold(
         body: SafeArea(
           child: Container(
@@ -34,7 +34,7 @@ class PainDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<Notes>>.value(
-      value: DatabaseService().notes,
+      value: DatabaseServices().notes,
       child: Scaffold(
           body: Container(
               decoration: BoxDecoration(
