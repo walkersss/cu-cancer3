@@ -11,7 +11,7 @@ import 'package:cu_cancer/pages/log_report.dart';
 import 'package:cu_cancer/pages/pain/painAdd.dart';
 import 'package:cu_cancer/pages/medication/addmedication.dart';
 import 'package:cu_cancer/pages/medication/viewmedication.dart';
-import 'package:cu_cancer/pages/appointment/appointment.dart';
+import 'package:cu_cancer/pages/appointment/showAppointment.dart';
 import 'package:cu_cancer/pages/appointment/addEvent.dart';
 import 'package:cu_cancer/pages/pain/pain_display.dart';
 //import 'package:flutter_local_notifications/flutter_local_notifications.dart';

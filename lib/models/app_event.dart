@@ -1,15 +1,21 @@
 import 'dart:convert';
 
+import 'package:date_time_picker/date_time_picker.dart';
+
 class AppEvent {
   final String name;
   final String type;
   final String department;
-  final DateTime time;
-  final DateTime date;
+  final String userID;
+  final String id;
+  final String time;
+  final String date;
   AppEvent({
     this.name,
     this.type,
     this.department,
+    this.userID,
+    this.id,
     this.time,
     this.date,
   });
@@ -18,13 +24,17 @@ class AppEvent {
     String name,
     String type,
     String department,
-    DateTime time,
-    DateTime date,
+    String userID,
+    String id,
+    String time,
+    String date,
   }) {
     return AppEvent(
       name: name ?? this.name,
       type: type ?? this.type,
       department: department ?? this.department,
+      userID: userID ?? this.userID,
+      id: id ?? this.id,
       time: time ?? this.time,
       date: date ?? this.date,
     );
@@ -35,8 +45,10 @@ class AppEvent {
       'name': name,
       'type': type,
       'department': department,
-      'time': time?.millisecondsSinceEpoch,
-      'date': date?.millisecondsSinceEpoch,
+      'userID': userID,
+      'id': id,
+      'time': time,
+      'date': date,
     };
   }
 
@@ -47,8 +59,24 @@ class AppEvent {
       name: map['name'],
       type: map['type'],
       department: map['department'],
-      time: DateTime.fromMillisecondsSinceEpoch(map['time']),
-      date: DateTime.fromMillisecondsSinceEpoch(map['date']),
+      userID: map['userID'],
+      id: map['id'],
+      time: map['time'],
+      date: map['date'],
+    );
+  }
+
+  factory AppEvent.fromDS(String id, Map<String, dynamic> map) {
+    if (map == null) return null;
+
+    return AppEvent(
+      name: map['name'],
+      type: map['type'],
+      department: map['department'],
+      userID: map['userID'],
+      id: id,
+      time: map['time'],
+      date: map['date'],
     );
   }
 
@@ -59,7 +87,7 @@ class AppEvent {
 
   @override
   String toString() {
-    return 'AppEvent(name: $name, type: $type, department: $department, time: $time, date: $date)';
+    return 'AppEvent(name: $name, type: $type, department: $department, userID: $userID, id: $id, time: $time, date: $date)';
   }
 
   @override
@@ -70,6 +98,8 @@ class AppEvent {
         o.name == name &&
         o.type == type &&
         o.department == department &&
+        o.userID == userID &&
+        o.id == id &&
         o.time == time &&
         o.date == date;
   }
@@ -79,6 +109,8 @@ class AppEvent {
     return name.hashCode ^
         type.hashCode ^
         department.hashCode ^
+        userID.hashCode ^
+        id.hashCode ^
         time.hashCode ^
         date.hashCode;
   }

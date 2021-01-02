@@ -168,7 +168,7 @@ class _AddMedicationState extends State<AddMedication> {
                           onPressed: () async {
                             _formKey.currentState.save();
                             if (_formKey.currentState.validate()) {
-                              DatabaseService(uid: user.uid).addMedicine(
+                              DatabaseServices(uid: user.uid).addMedicine(
                                   medicineName,
                                   medicineType,
                                   dosage,

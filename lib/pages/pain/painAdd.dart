@@ -222,7 +222,7 @@ class _PainAddState extends State<PainAdd> {
                           onPressed: () async {
                             _formKey.currentState.save();
                             if (_formKey.currentState.validate()) {
-                              DatabaseService(uid: user.uid).addNotes(
+                              DatabaseServices(uid: user.uid).addNotes(
                                   location, currentScale, date, time, desc);
                               print(location);
                               print(currentScale);

@@ -24,7 +24,7 @@ class Home extends StatelessWidget {
     }
 
     return StreamProvider<List<Cell>>.value(
-        value: DatabaseService().cells,
+        value: DatabaseServices().cells,
         child: Scaffold(
             backgroundColor: myHexColor,
             appBar: AppBar(

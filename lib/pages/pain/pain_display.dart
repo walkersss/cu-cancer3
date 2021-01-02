@@ -9,7 +9,7 @@ class PainDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     Color myHexColor2 = Color(0xff08AE9E);
     return StreamProvider<List<Notes>>.value(
-      value: DatabaseService().notes,
+      value: DatabaseServices().notes,
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: myHexColor2,

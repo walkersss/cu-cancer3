@@ -2,11 +2,12 @@ import 'package:cu_cancer/models/notes.dart';
 import 'package:cu_cancer/models/medicine.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cu_cancer/models/cell.dart';
+import 'package:cu_cancer/models/appointment.dart';
 import 'package:intl/intl.dart';
 
-class DatabaseService {
+class DatabaseServices {
   final String uid;
-  DatabaseService({this.uid});
+  DatabaseServices({this.uid});
   //collection reference
   final CollectionReference cancerCollection =
       Firestore.instance.collection('cell');
@@ -14,6 +15,9 @@ class DatabaseService {
       Firestore.instance.collection('notes');
   final CollectionReference medicineCollection =
       Firestore.instance.collection('medicine');
+  final CollectionReference appointmentCollection =
+      Firestore.instance.collection('appointment');
+  static const String eventsCollection = "events";
 
   Future updateUserData(String name, String status, int age) async {
     return await cancerCollection.document(uid).setData({
@@ -88,5 +92,36 @@ class DatabaseService {
 
   Stream<List<Medicine>> get medicine {
     return notesCollection.snapshots().map(_medicineListFromSnapshot);
+  }
+
+  Future<void> addAppointment(
+    String name,
+    String type,
+    String department,
+    String time,
+    String date,
+  ) async {
+    return await appointmentCollection.document(uid).setData({
+      'name': name,
+      'type': type,
+      'department': department,
+      'time': time,
+      'date': date,
+    });
+  }
+
+  List<Appointment> _appointmentListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return Appointment(
+          name: doc.data['name'] ?? '',
+          type: doc.data['type'] ?? '',
+          department: doc.data['department'] ?? '',
+          time: doc.data['time'] ?? '',
+          date: doc.data['date'] ?? '');
+    }).toList();
+  }
+
+  Stream<List<Appointment>> get appointment {
+    return appointmentCollection.snapshots().map(_appointmentListFromSnapshot);
   }
 }

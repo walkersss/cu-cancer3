@@ -1,3 +1,6 @@
+import 'package:cu_cancer/models/app_event.dart';
+import 'package:cu_cancer/services/appEvent_firestore.dart';
+import 'package:cu_cancer/others/routes.dart';
 import 'appointmentHome.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +12,28 @@ class ViewAppointment extends StatefulWidget {
 
 class _ViewAppointmentState extends State<ViewAppointment> {
   CalendarController _calendarController;
+  Map<DateTime, List<dynamic>> _events;
   @override
   void initState() {
     super.initState();
     _calendarController = CalendarController();
+    _events = {};
+  }
+
+  Map<DateTime, dynamic> decodeMap(Map<String, dynamic> map) {
+    Map<DateTime, dynamic> newMap = {};
+    map.forEach((key, value) {
+      newMap[DateTime.parse(key)] = map[key];
+    });
+    return newMap;
+  }
+
+  Map<DateTime, dynamic> encodeMap(Map<String, dynamic> map) {
+    Map<DateTime, dynamic> newMap = {};
+    map.forEach((key, value) {
+      newMap[DateTime.parse(key)] = map[key];
+    });
+    return newMap;
   }
 
   @override
@@ -30,6 +51,7 @@ class _ViewAppointmentState extends State<ViewAppointment> {
               clipBehavior: Clip.antiAlias,
               margin: const EdgeInsets.all(8.0),
               child: TableCalendar(
+                  events: _events,
                   calendarController: _calendarController,
                   calendarStyle: CalendarStyle(
                       todayColor: Colors.teal[700],
@@ -85,15 +107,32 @@ class _ViewAppointmentState extends State<ViewAppointment> {
                           style: TextStyle(color: Colors.white)),
                     ),
                   )),
-            )
+            ),
+            // StreamBuilder(
+            //   stream: eventDBS.streamList(),
+            //  builder: (BuildContext context, AsyncSnapshot snapshot) {
+            //    if (snapshot.hasData) {
+            //      final events = snapshot.data;
+            //     return ListView.builder(
+            //         shrinkWrap: true,
+            //         physics: NeverScrollableScrollPhysics(),
+            //        itemCount: events.length,
+            //       itemBuilder: (BuildContext context, int index) {
+            //          AppEvent event = events[index];
+            //          return ListTile(title: Text(event.name));
+            //       });
+            //  }
+            //  return CircularProgressIndicator();
+            //  },
+            //  )
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          Navigator.pushNamed(context, '/addEvent',
-              arguments: _calendarController.selectedDay);
+          //Navigator.pushNamed(context, AppRoutes.addEvent, arguments: _calendarController.selectedDay);
+          Navigator.pushNamed(context, '/addEvent');
         },
       ),
     );

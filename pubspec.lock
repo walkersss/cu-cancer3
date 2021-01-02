@@ -218,6 +218,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.1+2"
+  firebase_helpers:
+    dependency: "direct main"
+    description:
+      name: firebase_helpers
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.11"
+  firebase_storage:
+    dependency: transitive
+    description:
+      name: firebase_storage
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.6"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -315,6 +329,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  freezed_annotation:
+    dependency: transitive
+    description:
+      name: freezed_annotation
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.12.0"
   http:
     dependency: transitive
     description:
@@ -504,6 +525,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.0"
+  riverpod:
+    dependency: "direct main"
+    description:
+      name: riverpod
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.12.1"
   signature:
     dependency: transitive
     description:
@@ -551,6 +579,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.10.0-nullsafety.1"
+  state_notifier:
+    dependency: transitive
+    description:
+      name: state_notifier
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.0"
   stream_channel:
     dependency: transitive
     description:
