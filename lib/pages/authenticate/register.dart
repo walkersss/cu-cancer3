@@ -17,8 +17,10 @@ class _RegisterState extends State<Register> {
   final Color myHexColor = Color(0xffA3E0DA);
   final Color myHexColor2 = Color(0xff08AE9E);
 
+  final List<String> status = ['Patient', 'Survivor', 'Guardian'];
+
   String name = '';
-  String status = '';
+  String currentStatus;
   int age;
   String email = '';
   String password = '';
@@ -116,7 +118,21 @@ class _RegisterState extends State<Register> {
                           SizedBox(
                             height: 5,
                           ),
-                          TextFormField(
+                          DropdownButtonFormField(
+                            decoration: textInputDecoration,
+                            //value: currentStatus,
+                            hint: Text('survivor/patients/guardian'),
+                            items: status.map((status) {
+                              return DropdownMenuItem(
+                                  value: status, child: Text('$status'));
+                            }).toList(),
+                            onChanged: (val) =>
+                                setState(() => currentStatus = val),
+                            onSaved: (String val) {
+                              currentStatus = val;
+                            },
+                          ),
+                          /*TextFormField(
                             decoration: textInputDecoration.copyWith(
                                 hintText:
                                     'status: survivor, patients, guardian'),
@@ -125,7 +141,7 @@ class _RegisterState extends State<Register> {
                             onChanged: (val) {
                               setState(() => status = val);
                             },
-                          ),
+                          ),*/
                           SizedBox(
                             height: 17,
                           ),
@@ -168,7 +184,11 @@ class _RegisterState extends State<Register> {
                                   });
                                   dynamic result =
                                       await _auth.registerWithEmailandpassword(
-                                          name, status, age, email, password);
+                                          name,
+                                          currentStatus,
+                                          age,
+                                          email,
+                                          password);
                                   if (result == null) {
                                     setState(() {
                                       error = 'please supply a valid emai';

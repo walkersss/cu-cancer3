@@ -63,10 +63,10 @@ class _HomeState extends State<Home> {
               child: Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('assets/medicalbg.jpg'),
+                        image: AssetImage('assets/bg-cover2.jpg'),
                         fit: BoxFit.cover)),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 65, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
@@ -74,7 +74,7 @@ class _HomeState extends State<Home> {
                           child: Stack(children: <Widget>[
                             CircleAvatar(
                               backgroundImage: _imageFile == null
-                                  ? AssetImage('assets/buwung.jpg')
+                                  ? AssetImage('assets/ic_launcher.png')
                                   : FileImage(File(_imageFile.path)),
                               radius: 70,
                             ),
@@ -97,6 +97,7 @@ class _HomeState extends State<Home> {
                                 ))
                           ]),
                         ),
+                        SizedBox(height: 30),
                         Text(
                           'NAME: Buwung Puyuh',
                           style: TextStyle(
@@ -116,7 +117,7 @@ class _HomeState extends State<Home> {
                               fontWeight: FontWeight.bold),
                         ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 8, 0, 10),
+                          padding: const EdgeInsets.fromLTRB(13, 8, 13, 10),
                           child: LinearPercentIndicator(
                             //width: 140.0,
                             lineHeight: 15.0,
@@ -140,6 +141,7 @@ class _HomeState extends State<Home> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             FlatButton.icon(
+                                color: Color(0xff30a9e6),
                                 onPressed: () {
                                   print('pressed');
                                   Navigator.pushNamed(
@@ -148,6 +150,7 @@ class _HomeState extends State<Home> {
                                 icon: Icon(Icons.local_pharmacy),
                                 label: Text('Medication')),
                             FlatButton.icon(
+                                color: Color(0xfffa8b2a),
                                 onPressed: () {
                                   print('pressed');
                                   Navigator.pushNamed(
@@ -158,25 +161,27 @@ class _HomeState extends State<Home> {
                           ],
                         ),
                         SizedBox(
-                          height: 40,
+                          height: 30,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             FlatButton.icon(
-                                onPressed: () {
-                                  print('pressed');
-                                  Navigator.pushNamed(context, '/painHome');
-                                },
-                                icon: Icon(Icons.create),
-                                label: Text('Pain Notes')),
-                            FlatButton.icon(
+                                color: Color(0xffa12aeb),
                                 onPressed: () {
                                   print('pressed');
                                   Navigator.pushNamed(context, '/logReport');
                                 },
                                 icon: Icon(Icons.assessment),
-                                label: Text('Log Report'))
+                                label: Text('Log Report')),
+                            FlatButton.icon(
+                                color: Color(0xffdaeb23),
+                                onPressed: () {
+                                  print('pressed');
+                                  Navigator.pushNamed(context, '/painHome');
+                                },
+                                icon: Icon(Icons.create),
+                                label: Text('Pain Notes'))
                           ],
                         ),
                       ]),
