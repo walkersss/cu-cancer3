@@ -99,7 +99,7 @@ class _HomeState extends State<Home> {
                         ),
                         SizedBox(height: 30),
                         Text(
-                          'NAME: Buwung Puyuh',
+                          'NAME: (Name)',
                           style: TextStyle(
                             color: Colors.black,
                             letterSpacing: 2,

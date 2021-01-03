@@ -46,7 +46,7 @@ class _AddMedicationState extends State<AddMedication> {
       //backgroundColor: myHexColor,
       appBar: AppBar(
         backgroundColor: myHexColor2,
-        title: Text('New Notes'),
+        title: Text('New Medication'),
         elevation: 0,
       ),
       body: Builder(
