@@ -32,7 +32,7 @@ dependencies:
   speech_to_text: ^3.0.1
   image_picker: ^0.6.7+17
   flutter_launcher_icons: ^0.8.1
-  
+  riverpod: ^0.12.1
 
 
   # The following adds the Cupertino Icons font to your application.

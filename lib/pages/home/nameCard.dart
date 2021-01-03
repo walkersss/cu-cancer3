@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:cu_cancer/pages/home/name_tile.dart';
+//import 'package:cu_cancer/pages/home/name_tile.dart';
 import 'package:cu_cancer/models/cell.dart';
 
 class NameCard extends StatefulWidget {

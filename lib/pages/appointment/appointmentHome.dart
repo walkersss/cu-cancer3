@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Appointment extends StatelessWidget {
+class AppointmentHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color myHexColor2 = Color(0xff08AE9E);

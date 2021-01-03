@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         home: Wrapper(),
         routes: {
           '/medicationHome': (context) => Medication(),
-          '/appointmentHome': (context) => Appointment(),
+          '/appointmentHome': (context) => AppointmentHome(),
           '/painHome': (context) => Pain(),
           '/logReport': (context) => LogReport(),
           '/painAdd': (context) => PainAdd(),

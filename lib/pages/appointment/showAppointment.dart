@@ -1,9 +1,13 @@
-import 'package:cu_cancer/models/app_event.dart';
-import 'package:cu_cancer/services/appEvent_firestore.dart';
-import 'package:cu_cancer/others/routes.dart';
-import 'appointmentHome.dart';
+//import 'package:cu_cancer/models/app_event.dart';
+//import 'package:cu_cancer/services/appEvent_firestore.dart';
+//import 'package:cu_cancer/others/routes.dart';
+import 'package:cu_cancer/services/database.dart';
+//import 'appointmentHome.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:cu_cancer/models/appointment.dart';
+import 'package:cu_cancer/pages/appointment/appointmentList.dart';
 
 class ViewAppointment extends StatefulWidget {
   @override
@@ -108,23 +112,35 @@ class _ViewAppointmentState extends State<ViewAppointment> {
                     ),
                   )),
             ),
-            // StreamBuilder(
-            //   stream: eventDBS.streamList(),
+            //StreamBuilder(
+            //  stream: eventDBS.streamList(),
             //  builder: (BuildContext context, AsyncSnapshot snapshot) {
-            //    if (snapshot.hasData) {
-            //      final events = snapshot.data;
+            //   if (snapshot.hasData) {
+            //     final events = snapshot.data;
             //     return ListView.builder(
             //         shrinkWrap: true,
-            //         physics: NeverScrollableScrollPhysics(),
-            //        itemCount: events.length,
-            //       itemBuilder: (BuildContext context, int index) {
+            //         itemCount: events.length,
+            //        itemBuilder: (BuildContext context, int index) {
             //          AppEvent event = events[index];
             //          return ListTile(title: Text(event.name));
-            //       });
+            //        });
             //  }
             //  return CircularProgressIndicator();
-            //  },
-            //  )
+            //},
+            //)
+            StreamProvider<List<Appointment>>.value(
+              value: DatabaseServices().appointment,
+              child: Scaffold(
+                body: SafeArea(
+                  child: Container(
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('assets/medicalbg.jpg'),
+                              fit: BoxFit.cover)),
+                      child: AppointmentList()),
+                ),
+              ),
+            )
           ],
         ),
       ),

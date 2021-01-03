@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 import 'package:cu_cancer/models/app_event.dart';
-import 'package:cu_cancer/services/appEvent_firestore.dart';
+//import 'package:cu_cancer/services/appEvent_firestore.dart';
+import 'package:cu_cancer/services/database.dart';
+import 'package:cu_cancer/models/user.dart';
+//import 'package:riverpod/riverpod.dart';
+import 'package:provider/provider.dart';
 
 class AddEvent extends StatefulWidget {
   final DateTime selectedDate;
@@ -15,6 +19,8 @@ class AddEvent extends StatefulWidget {
 
 class _AddEventState extends State<AddEvent> {
   final _formKey = GlobalKey<FormBuilderState>();
+  final format = DateFormat.yMd();
+  final format2 = DateFormat("hh:mm a");
   var _types = [
     "Medication Resupply",
     "Medication Session",
@@ -49,6 +55,8 @@ class _AddEventState extends State<AddEvent> {
 
   @override
   Widget build(BuildContext context) {
+    User user = Provider.of<User>(context);
+    String name, type, department, time, date;
     return Scaffold(
       appBar: AppBar(
         title: Text('Add Event'),
@@ -74,6 +82,9 @@ class _AddEventState extends State<AddEvent> {
                       border: InputBorder.none,
                       contentPadding: const EdgeInsets.only(left: 48.0),
                     ),
+                    onSaved: (String val) {
+                      name = val;
+                    },
                   ),
                   Divider(),
                   FormBuilderDropdown(
@@ -89,6 +100,9 @@ class _AddEventState extends State<AddEvent> {
                               child: Text('$type'),
                             ))
                         .toList(),
+                    onSaved: (String val) {
+                      type = val;
+                    },
                   ),
                   Divider(),
                   FormBuilderFilterChip(
@@ -129,6 +143,7 @@ class _AddEventState extends State<AddEvent> {
                         labelText: 'Appointment Date',
                         prefixIcon: Icon(Icons.date_range)),
                     format: DateFormat('EEEE, MM/dd/yyyy'),
+                    onSaved: (val) => DateFormat.jm().format(val),
                   ),
                   Divider(),
                   ElevatedButton(
@@ -138,13 +153,19 @@ class _AddEventState extends State<AddEvent> {
                         _formKey.currentState.save();
                         final data = Map<String, dynamic>.from(
                             _formKey.currentState.value);
-                        //     data['time'] =
-                        //         (data['time'] as DateTime).millisecondsSinceEpoch;
-                        //data['user_id'] = context.read(userRepoProvider).user.id;
+                        //  data['time'] =
+                        //      (data['time'] as DateTime).millisecondsSinceEpoch;
+                        //  data['user_id'] =
+                        //     context.read(userRepoProvider).user.id;
 
-                        //      await eventDBS.create(data);
+                        // await eventDBS.create(data);
 
                         print(data);
+
+                        if (_formKey.currentState.validate()) {
+                          DatabaseServices(uid: user.uid).addAppointment(
+                              name, type, department, time, date);
+                        }
                         Navigator.pop(context);
                       }
                     },

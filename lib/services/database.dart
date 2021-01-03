@@ -3,7 +3,7 @@ import 'package:cu_cancer/models/medicine.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cu_cancer/models/cell.dart';
 import 'package:cu_cancer/models/appointment.dart';
-import 'package:intl/intl.dart';
+//import 'package:intl/intl.dart';
 
 class DatabaseServices {
   final String uid;

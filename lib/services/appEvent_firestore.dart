@@ -5,4 +5,4 @@ import 'package:firebase_helpers/firebase_helpers.dart';
 DatabaseService<AppEvent> eventDBS = DatabaseService<AppEvent>(
     DatabaseServices.eventsCollection,
     toMap: (user) => user.toMap(),
-    fromDS: (id, data) => AppEvent.fromDS(id, data));
+    fromDS: (id, data) => AppEvent.fromMap(data));
