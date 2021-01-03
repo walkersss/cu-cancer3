@@ -175,7 +175,7 @@ class _HomeState extends State<Home> {
                                 icon: Icon(Icons.assessment),
                                 label: Text('Log Report')),
                             FlatButton.icon(
-                                color: Color(0xffdaeb23),
+                                color: Color(0xfff0e037),
                                 onPressed: () {
                                   print('pressed');
                                   Navigator.pushNamed(context, '/painHome');

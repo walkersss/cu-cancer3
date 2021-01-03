@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cu_cancer/models/notes.dart';
 import 'package:cu_cancer/pages/pain/pain_List.dart';
+import 'package:cu_cancer/pages/appointment/appointmentList.dart';
+import 'package:cu_cancer/models/appointment.dart';
 
 class ViewMedication extends StatefulWidget {
   @override
@@ -42,6 +44,22 @@ class PainDisplay extends StatelessWidget {
                       image: AssetImage('assets/medicalbg.jpg'),
                       fit: BoxFit.cover)),
               child: PainList())),
+    );
+  }
+}
+
+class ViewAppointment extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StreamProvider<List<Appointment>>.value(
+      value: DatabaseServices().appointment,
+      child: Scaffold(
+          body: Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/medicalbg.jpg'),
+                      fit: BoxFit.cover)),
+              child: AppointmentList())),
     );
   }
 }

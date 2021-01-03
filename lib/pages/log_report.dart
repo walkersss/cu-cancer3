@@ -37,11 +37,7 @@ class _LogReportState extends State<LogReport> {
                       image: AssetImage('assets/medicalbg.jpg'),
                       fit: BoxFit.cover)),
               child: TabBarView(
-                children: [
-                  ViewMedication(),
-                  Icon(Icons.calendar_today),
-                  PainDisplay()
-                ],
+                children: [ViewMedication(), ViewAppointment(), PainDisplay()],
               ),
             )));
   }

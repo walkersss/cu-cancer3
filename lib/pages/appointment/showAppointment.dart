@@ -128,19 +128,19 @@ class _ViewAppointmentState extends State<ViewAppointment> {
             //  return CircularProgressIndicator();
             //},
             //)
-            Card(
-              clipBehavior: Clip.antiAlias,
-              margin: const EdgeInsets.all(8.0),
-              child: StreamProvider<List<Appointment>>.value(
-                value: DatabaseServices().appointment,
-                child: Container(
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/medicalbg.jpg'),
-                            fit: BoxFit.cover)),
-                    child: AppointmentList()),
+            StreamProvider<List<Appointment>>.value(
+              value: DatabaseServices().appointment,
+              child: Scaffold(
+                body: SafeArea(
+                  child: Container(
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('assets/medicalbg.jpg'),
+                              fit: BoxFit.cover)),
+                      child: AppointmentList()),
+                ),
               ),
-            ),
+            )
           ],
         ),
       ),
