@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:date_time_picker/date_time_picker.dart';
-
+//import 'package:firebasestarter/core/presentation/providers/providers.dart';
 import 'package:intl/intl.dart';
 
 class AddEvent extends StatefulWidget {
@@ -133,6 +133,7 @@ class _AddEventState extends State<AddEvent> {
                     ),
                     // initialTime: TimeOfDay(hour: 8, minute: 0),
                     initialValue: DateTime.now(),
+                    format: DateFormat('jms'),
                     onSaved: (val) => DateFormat.jm().format(val),
                     // enabled: true,
                   ),
@@ -148,7 +149,7 @@ class _AddEventState extends State<AddEvent> {
                         labelText: 'Appointment Date',
                         prefixIcon: Icon(Icons.date_range)),
                     format: DateFormat('EEEE, MM/dd/yyyy'),
-                    onSaved: (val) => DateFormat.jm().format(val),
+                    onSaved: (val) => DateFormat.yMMMd().format(val),
                   ),
                   Divider(),
                   ElevatedButton(
@@ -160,8 +161,8 @@ class _AddEventState extends State<AddEvent> {
                             _formKey.currentState.value);
                         //  data['time'] =
                         //      (data['time'] as DateTime).millisecondsSinceEpoch;
-                        // data['user_id'] =
-                        //    context.read(userRepoProvider).user.id;
+                        //data['user_id'] =
+                        //   context.read(userRepoProvider).user.id;
 
                         await eventDBS.create(data);
 
