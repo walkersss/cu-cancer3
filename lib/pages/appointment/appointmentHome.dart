@@ -61,7 +61,7 @@ class AppointmentHome extends StatelessWidget {
                           children: <Widget>[
                             OutlinedButton.icon(
                               onPressed: () {
-                                print('pressed');
+                                Navigator.pushNamed(context, '/addEvent');
                               },
                               label: Text(
                                 'New Appointment',

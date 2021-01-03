@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 import 'package:cu_cancer/models/app_event.dart';
-//import 'package:cu_cancer/services/appEvent_firestore.dart';
+import 'package:cu_cancer/services/appEvent_firestore.dart';
 import 'package:cu_cancer/services/database.dart';
 import 'package:cu_cancer/models/user.dart';
 //import 'package:riverpod/riverpod.dart';
@@ -160,17 +160,17 @@ class _AddEventState extends State<AddEvent> {
                             _formKey.currentState.value);
                         //  data['time'] =
                         //      (data['time'] as DateTime).millisecondsSinceEpoch;
-                        //  data['user_id'] =
-                        //     context.read(userRepoProvider).user.id;
+                        // data['user_id'] =
+                        //    context.read(userRepoProvider).user.id;
 
-                        // await eventDBS.create(data);
+                        await eventDBS.create(data);
 
                         print(data);
 
-                        if (_formKey.currentState.validate()) {
-                          DatabaseServices(uid: user.uid).addAppointment(
-                              name, type, department, time, date);
-                        }
+                        //    if (_formKey.currentState.validate()) {
+                        //      DatabaseServices(uid: user.uid).addAppointment(
+                        //          name, type, department, time, date);
+                        //    }
                         Navigator.pop(context);
                       }
                     },

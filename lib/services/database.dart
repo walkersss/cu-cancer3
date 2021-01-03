@@ -17,7 +17,9 @@ class DatabaseServices {
       Firestore.instance.collection('medicine');
   final CollectionReference appointmentCollection =
       Firestore.instance.collection('appointment');
+
   static const String eventsCollection = "events";
+  static const String appointmentsCollection = "appointments";
 
   Future updateUserData(String name, String status, int age) async {
     return await cancerCollection.document(uid).setData({
