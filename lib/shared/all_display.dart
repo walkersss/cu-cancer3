@@ -14,6 +14,12 @@ class ViewMedication extends StatefulWidget {
 }
 
 class _ViewMedicationState extends State<ViewMedication> {
+  void initState() {
+    super.initState();
+    print('initstate for medication');
+  }
+
+  final Color myHexColor2 = Color(0xff08AE9E);
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<Medicine>>.value(
@@ -27,39 +33,89 @@ class _ViewMedicationState extends State<ViewMedication> {
                       fit: BoxFit.cover)),
               child: MedsList()),
         ),
+        floatingActionButton: FloatingActionButton(
+          heroTag: "btn1",
+          onPressed: () {
+            Navigator.pushNamed(context, '/addmedication');
+          },
+          child: Icon(Icons.add),
+          backgroundColor: myHexColor2,
+        ),
       ),
     );
   }
 }
 
-class PainDisplay extends StatelessWidget {
+class PainDisplay extends StatefulWidget {
+  @override
+  _PainDisplayState createState() => _PainDisplayState();
+}
+
+class _PainDisplayState extends State<PainDisplay> {
+  void initState() {
+    super.initState();
+    print('initstate for pain');
+  }
+
+  final Color myHexColor2 = Color(0xff08AE9E);
+
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<Notes>>.value(
       value: DatabaseServices().notes,
       child: Scaffold(
-          body: Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/medicalbg.jpg'),
-                      fit: BoxFit.cover)),
-              child: PainList())),
+        body: Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/medicalbg.jpg'),
+                    fit: BoxFit.cover)),
+            child: PainList()),
+        floatingActionButton: FloatingActionButton(
+          heroTag: "btn2",
+          onPressed: () {
+            Navigator.pushNamed(context, '/painAdd');
+          },
+          child: Icon(Icons.add),
+          backgroundColor: myHexColor2,
+        ),
+      ),
     );
   }
 }
 
-class ViewAppointment extends StatelessWidget {
+class ViewAppointment extends StatefulWidget {
+  @override
+  _ViewAppointmentState createState() => _ViewAppointmentState();
+}
+
+class _ViewAppointmentState extends State<ViewAppointment> {
+  void initState() {
+    super.initState();
+    print('initstate for appointment');
+  }
+
+  final Color myHexColor2 = Color(0xff08AE9E);
+
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<Appointment>>.value(
       value: DatabaseServices().appointment,
       child: Scaffold(
-          body: Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/medicalbg.jpg'),
-                      fit: BoxFit.cover)),
-              child: AppointmentList())),
+        body: Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/medicalbg.jpg'),
+                    fit: BoxFit.cover)),
+            child: AppointmentList()),
+        floatingActionButton: FloatingActionButton(
+          heroTag: "btn3",
+          onPressed: () {
+            Navigator.pushNamed(context, '/addEvent');
+          },
+          child: Icon(Icons.add),
+          backgroundColor: myHexColor2,
+        ),
+      ),
     );
   }
 }

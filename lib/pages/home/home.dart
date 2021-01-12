@@ -1,7 +1,7 @@
 //import 'dart:js';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:cu_cancer/pages/home/settings_form.dart';
+import 'package:cu_cancer/pages/home/profile.dart';
 import 'package:cu_cancer/services/auth.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
