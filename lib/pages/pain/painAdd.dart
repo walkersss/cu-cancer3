@@ -73,21 +73,32 @@ class _PainAddState extends State<PainAdd> {
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                  padding: const EdgeInsets.fromLTRB(30, 20, 30, 220),
                   child: FormBuilder(
                       key: _formKey,
                       autovalidateMode: AutovalidateMode.always,
                       //autovalidateMode: AutovalidateMode.always,
                       child: Column(children: <Widget>[
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          'Location:',
-                          style: TextStyle(fontSize: 15),
-                        ),
                         DropdownButtonFormField(
-                          decoration: textInputDecoration,
+                          decoration: InputDecoration(
+                            labelText: 'Pain Location',
+                            labelStyle: TextStyle(
+                                color: Colors.black,
+                                fontStyle: FontStyle.italic),
+                            hintText: 'Pain Location',
+                            prefixIcon: Icon(Icons.accessibility),
+                            contentPadding: const EdgeInsets.only(left: 5.0),
+                            fillColor: Colors.white,
+                            filled: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 0.5),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.green, width: 2),
+                            ),
+                          ),
                           //value: currentScale,
                           items: locations.map((location) {
                             return DropdownMenuItem(
@@ -98,17 +109,31 @@ class _PainAddState extends State<PainAdd> {
                             location = val;
                           },
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          'Scale of Pain:',
-                          style: TextStyle(fontSize: 15),
-                        ),
-                        Text('1-mild, 5- severe'),
+                        Divider(),
+
                         //dropdown
-                        DropdownButtonFormField(
-                          decoration: textInputDecoration,
+                        FormBuilderDropdown(
+                          name: 'location',
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.healing),
+                            labelText:
+                                'Scale of Pain From 1 (Mild) - 5 (Severe)',
+                            labelStyle: TextStyle(
+                                color: Colors.black,
+                                fontStyle: FontStyle.italic),
+                            hintText: 'Example: Panadol',
+                            contentPadding: const EdgeInsets.only(left: 5.0),
+                            fillColor: Colors.white,
+                            filled: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 0.5),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.green, width: 2),
+                            ),
+                          ),
                           //value: currentScale,
                           items: scales.map((scale) {
                             return DropdownMenuItem(
@@ -120,14 +145,27 @@ class _PainAddState extends State<PainAdd> {
                             currentScale = val;
                           },
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          'Date & Time',
-                          style: TextStyle(fontSize: 15),
-                        ),
+                        Divider(),
+
                         DateTimePicker(
+                          decoration: InputDecoration(
+                            labelText: 'Date of Pain',
+                            labelStyle: TextStyle(
+                                color: Colors.black,
+                                fontStyle: FontStyle.italic),
+                            prefixIcon: Icon(Icons.calendar_today),
+                            contentPadding: const EdgeInsets.only(left: 48.0),
+                            fillColor: Colors.white,
+                            filled: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 0.5),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.green, width: 2),
+                            ),
+                          ),
                           type: DateTimePickerType.date,
                           initialValue: '',
                           firstDate: DateTime(2019),
@@ -137,13 +175,26 @@ class _PainAddState extends State<PainAdd> {
                           onChanged: (val) => print(val),
                           onSaved: (val) => date = val,
                         ),
+                        Divider(),
                         DateTimeField(
                           decoration: InputDecoration(
-                              icon: Icon(Icons.access_time),
-                              hintText: 'Time',
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.black, width: 2))),
+                            prefixIcon: Icon(Icons.access_time),
+                            hintText: 'Time',
+                            hintStyle: TextStyle(
+                                color: Colors.black,
+                                fontStyle: FontStyle.italic),
+                            contentPadding: const EdgeInsets.only(left: 48.0),
+                            fillColor: Colors.white,
+                            filled: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 0.5),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.green, width: 2),
+                            ),
+                          ),
                           format: format2,
                           onSaved: (val) => time = DateFormat.jm().format(val),
                           onShowPicker: (context, currentValue) async {
@@ -155,11 +206,26 @@ class _PainAddState extends State<PainAdd> {
                             return DateTimeField.convert(time);
                           },
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
+                        Divider(),
                         TextFormField(
-                          decoration: morePainInputDecoration,
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.access_time),
+                            hintText: 'Additional Notes (Optional)',
+                            hintStyle: TextStyle(
+                                color: Colors.black,
+                                fontStyle: FontStyle.italic),
+                            contentPadding: const EdgeInsets.only(left: 48.0),
+                            fillColor: Colors.white,
+                            filled: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 0.5),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.green, width: 2),
+                            ),
+                          ),
                           validator: FormBuilderValidators.compose([
                             FormBuilderValidators.maxLength(context, 200),
                           ]),
@@ -167,6 +233,7 @@ class _PainAddState extends State<PainAdd> {
                             desc = val;
                           },
                         ),
+                        Divider(),
                         ElevatedButton(
                           //onPressed: _sendToServer(),
                           onPressed: () async {

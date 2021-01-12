@@ -26,6 +26,7 @@ class _AddEventState extends State<AddEvent> {
   final _formKey = GlobalKey<FormBuilderState>();
   final format = DateFormat.yMd();
   final format2 = DateFormat("hh:mm a");
+  FocusNode myFocusNode;
   var _types = [
     "Medication Resupply",
     "Medication Session",
@@ -62,123 +63,199 @@ class _AddEventState extends State<AddEvent> {
   Widget build(BuildContext context) {
     User user = Provider.of<User>(context);
     String name, type, department, time, date;
+    myFocusNode = FocusNode();
+
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text('Add Event'),
+        title: Text('New Appointment'),
         backgroundColor: Colors.teal[400],
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(16.0),
+      body: Stack(
         children: <Widget>[
-          FormBuilder(
-              key: _formKey,
-              child: Column(
-                children: [
-                  FormBuilderTextField(
-                    validator: (val) {
-                      if (val == null || val.isEmpty) {
-                        return "Title should not be empty";
-                      }
-                      return null;
-                    },
-                    name: "name",
-                    decoration: InputDecoration(
-                      hintText: "Add Appointment Name",
-                      border: InputBorder.none,
-                      contentPadding: const EdgeInsets.only(left: 48.0),
+          Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/medicalbg.jpg'),
+                    fit: BoxFit.cover)),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
+              child: FormBuilder(
+                  key: _formKey,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        FormBuilderTextField(
+                          validator: (val) {
+                            if (val == null || val.isEmpty) {
+                              return "Title should not be empty";
+                            }
+                            return null;
+                          },
+                          autofocus: true,
+                          name: "name",
+                          decoration: InputDecoration(
+                            labelText: 'Appointment Name',
+                            labelStyle: TextStyle(color: Colors.black),
+                            hintText: "Example: 2nd Appointment",
+                            hintStyle: TextStyle(
+                                color: Colors.grey[800],
+                                fontStyle: FontStyle.italic),
+                            fillColor: Colors.white,
+                            filled: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 0.5),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.green, width: 2),
+                            ),
+                            contentPadding: const EdgeInsets.only(left: 48.0),
+                          ),
+                          onSaved: (String val) {
+                            name = val;
+                          },
+                        ),
+                        Divider(),
+                        FormBuilderDropdown(
+                          name: "type",
+                          decoration: InputDecoration(
+                            hintText: "Choose Type of Appointment",
+                            hintStyle: TextStyle(
+                                color: Colors.black,
+                                fontStyle: FontStyle.italic),
+                            prefixIcon: Icon(Icons.calendar_view_day),
+                            fillColor: Colors.white,
+                            filled: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 0.5),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.green, width: 2),
+                            ),
+                          ),
+                          allowClear: true,
+                          items: _types
+                              .map((type) => DropdownMenuItem(
+                                    value: type,
+                                    child: Text('$type'),
+                                  ))
+                              .toList(),
+                          onSaved: (String val) {
+                            type = val;
+                          },
+                        ),
+                        Divider(),
+                        Text(
+                          'Choose Department(s) Involved',
+                          textAlign: TextAlign.left,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        FormBuilderFilterChip(
+                          name: "department",
+                          elevation: 1.0,
+                          pressElevation: 2.5,
+                          backgroundColor: Colors.white,
+                          selectedColor: Colors.green,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            //labelText: "Choose Department(s) Involved ",
+                            labelStyle: TextStyle(color: Colors.black),
+                            prefixIcon: Icon(Icons.sensor_door_rounded),
+                          ),
+                          options: _department
+                              .map((department) => FormBuilderFieldOption(
+                                    value: department,
+                                    child: Text('$department'),
+                                  ))
+                              .toList(),
+                        ),
+                        Divider(),
+                        FormBuilderDateTimePicker(
+                          name: 'time',
+                          inputType: InputType.time,
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.time_to_leave),
+                            labelText: 'Appointment Time',
+                            labelStyle: TextStyle(color: Colors.black),
+                            fillColor: Colors.white,
+                            filled: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 0.5),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.green, width: 2),
+                            ),
+                          ),
+                          // initialTime: TimeOfDay(hour: 8, minute: 0),
+                          initialValue: DateTime.now(),
+                          format: DateFormat('jms'),
+                          onSaved: (val) => DateFormat.jm().format(val),
+                          // enabled: true,
+                        ),
+                        Divider(),
+                        FormBuilderDateTimePicker(
+                          validator: FormBuilderValidators.compose(
+                              [FormBuilderValidators.required(context)]),
+                          name: 'date',
+                          initialValue: widget.selectedDate ?? DateTime.now(),
+                          fieldHintText: "Add Date",
+                          inputType: InputType.date,
+                          decoration: InputDecoration(
+                            labelText: 'Appointment Date',
+                            labelStyle: TextStyle(color: Colors.black),
+                            prefixIcon: Icon(Icons.date_range),
+                            fillColor: Colors.white,
+                            filled: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 0.5),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.green, width: 2),
+                            ),
+                          ),
+                          format: DateFormat('EEEE, MM/dd/yyyy'),
+                          onSaved: (val) => DateFormat.yMMMd().format(val),
+                        ),
+                        Divider(),
+                        ElevatedButton(
+                          onPressed: () async {
+                            bool validated = _formKey.currentState.validate();
+                            if (validated) {
+                              _formKey.currentState.save();
+                              final data = Map<String, dynamic>.from(
+                                  _formKey.currentState.value);
+                              //  data['time'] =
+                              //      (data['time'] as DateTime).millisecondsSinceEpoch;
+                              //data['user_id'] =
+                              //   context.read(userRepoProvider).user.id;
+
+                              await eventDBS.create(data);
+
+                              print(data);
+
+                              //    if (_formKey.currentState.validate()) {
+                              //      DatabaseServices(uid: user.uid).addAppointment(
+                              //          name, type, department, time, date);
+                              //    }
+                              Navigator.pop(context);
+                            }
+                          },
+                          child: Text("Submit"),
+                        )
+                      ],
                     ),
-                    onSaved: (String val) {
-                      name = val;
-                    },
-                  ),
-                  Divider(),
-                  FormBuilderDropdown(
-                    name: "type",
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Choose Type of Appointment",
-                        prefixIcon: Icon(Icons.calendar_view_day)),
-                    allowClear: true,
-                    items: _types
-                        .map((type) => DropdownMenuItem(
-                              value: type,
-                              child: Text('$type'),
-                            ))
-                        .toList(),
-                    onSaved: (String val) {
-                      type = val;
-                    },
-                  ),
-                  Divider(),
-                  FormBuilderFilterChip(
-                    name: "department",
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        labelText: "Choose Department(s) Involved ",
-                        prefixIcon: Icon(Icons.sensor_door_rounded)),
-                    options: _department
-                        .map((department) => FormBuilderFieldOption(
-                              value: department,
-                              child: Text('$department'),
-                            ))
-                        .toList(),
-                  ),
-                  Divider(),
-                  FormBuilderDateTimePicker(
-                    name: 'time',
-                    inputType: InputType.time,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.time_to_leave),
-                      labelText: 'Appointment Time',
-                    ),
-                    // initialTime: TimeOfDay(hour: 8, minute: 0),
-                    initialValue: DateTime.now(),
-                    format: DateFormat('jms'),
-                    onSaved: (val) => DateFormat.jm().format(val),
-                    // enabled: true,
-                  ),
-                  Divider(),
-                  FormBuilderDateTimePicker(
-                    validator: FormBuilderValidators.compose(
-                        [FormBuilderValidators.required(context)]),
-                    name: 'date',
-                    initialValue: widget.selectedDate ?? DateTime.now(),
-                    fieldHintText: "Add Date",
-                    inputType: InputType.date,
-                    decoration: InputDecoration(
-                        labelText: 'Appointment Date',
-                        prefixIcon: Icon(Icons.date_range)),
-                    format: DateFormat('EEEE, MM/dd/yyyy'),
-                    onSaved: (val) => DateFormat.yMMMd().format(val),
-                  ),
-                  Divider(),
-                  ElevatedButton(
-                    onPressed: () async {
-                      bool validated = _formKey.currentState.validate();
-                      if (validated) {
-                        _formKey.currentState.save();
-                        final data = Map<String, dynamic>.from(
-                            _formKey.currentState.value);
-                        //  data['time'] =
-                        //      (data['time'] as DateTime).millisecondsSinceEpoch;
-                        //data['user_id'] =
-                        //   context.read(userRepoProvider).user.id;
-
-                        await eventDBS.create(data);
-
-                        print(data);
-
-                        //    if (_formKey.currentState.validate()) {
-                        //      DatabaseServices(uid: user.uid).addAppointment(
-                        //          name, type, department, time, date);
-                        //    }
-                        Navigator.pop(context);
-                      }
-                    },
-                    child: Text("Submit"),
-                  )
-                ],
-              ))
+                  )),
+            ),
+          )
         ],
       ),
     );

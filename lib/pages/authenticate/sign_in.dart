@@ -53,7 +53,7 @@ class _SignInState extends State<SignIn> {
                       Center(
                         child: Container(
                             alignment: Alignment.center,
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 55),
                             child: Stack(
                               children: [
                                 Align(

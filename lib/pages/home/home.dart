@@ -41,6 +41,7 @@ class _HomeState extends State<Home> {
     return StreamProvider<List<Cell>>.value(
         value: DatabaseServices().cells,
         child: Scaffold(
+            resizeToAvoidBottomInset: false,
             backgroundColor: myHexColor,
             appBar: AppBar(
               title: Text('C U Cancer'),

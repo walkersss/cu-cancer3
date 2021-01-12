@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
     return StreamProvider<User>.value(
       value: AuthService().user,
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Wrapper(),
         routes: {
           '/medicationHome': (context) => Medication(),

@@ -62,7 +62,7 @@ class _RegisterState extends State<Register> {
                           Center(
                             child: Container(
                                 alignment: Alignment.center,
-                                padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                                padding: EdgeInsets.fromLTRB(0, 0, 0, 55),
                                 child: Stack(
                                   children: [
                                     Align(
