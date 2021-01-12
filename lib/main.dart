@@ -7,7 +7,7 @@ import 'package:cu_cancer/services/auth.dart';
 //import 'package:cu_cancer/pages/home/home.dart';
 import 'package:cu_cancer/pages/appointment/appointmentHome.dart';
 import 'package:cu_cancer/pages/pain/painHome.dart';
-import 'package:cu_cancer/pages/log_report.dart';
+import 'package:cu_cancer/pages/home/log_report.dart';
 import 'package:cu_cancer/pages/pain/painAdd.dart';
 import 'package:cu_cancer/pages/medication/addmedication.dart';
 import 'package:cu_cancer/pages/medication/viewmedication.dart';
