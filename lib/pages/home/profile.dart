@@ -144,15 +144,27 @@ class _SettingsFormState extends State<SettingsForm> {
                   key: _formkey,
                   child: Column(
                     children: <Widget>[
-                      Text(
-                        'Update your profile.',
-                        style: TextStyle(fontSize: 18),
-                      ),
                       SizedBox(
                         height: 20,
                       ),
                       TextFormField(
-                        decoration: textInputDecoration,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.person),
+                          hintText: 'Name',
+                          hintStyle: TextStyle(
+                              color: Colors.black, fontStyle: FontStyle.italic),
+                          contentPadding: const EdgeInsets.only(left: 48.0),
+                          fillColor: Colors.white,
+                          filled: true,
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.black, width: 0.5),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.green, width: 2),
+                          ),
+                        ),
                         validator: (val) =>
                             val.isEmpty ? 'Please enter name' : null,
                         onChanged: (val) => setState(() => _currentName = val),
@@ -170,32 +182,45 @@ class _SettingsFormState extends State<SettingsForm> {
                           }).toList(),
                           onChanged: (val) =>
                               setState(() => _currentStatus = val)),
+                      SizedBox(
+                        height: 20,
+                      ),
                       //slider
                       TextFormField(
-                        decoration: textInputDecoration,
+                        decoration: InputDecoration(
+                          hintText: 'Age',
+                          hintStyle: TextStyle(
+                              color: Colors.black, fontStyle: FontStyle.italic),
+                          contentPadding: const EdgeInsets.only(left: 48.0),
+                          fillColor: Colors.white,
+                          filled: true,
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.black, width: 0.5),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.green, width: 2),
+                          ),
+                        ),
                         validator: (val) => val.isEmpty ? 'Age' : null,
                         onChanged: (val) => setState(() => _currentAge = val),
                       ),
-                      RaisedButton(
-                          color: Colors.pink[400],
-                          child: Text(
-                            'Update',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          onPressed: () async {
-                            print(_currentName);
-                            print(_currentStatus);
-                            print(_currentAge);
-                          }),
                     ],
                   )),
             ],
           ),
           buttons: [
             DialogButton(
-              onPressed: () => Navigator.pop(context),
+              color: myHexColor2,
+              onPressed: () async {
+                print(_currentName);
+                print(_currentStatus);
+                print(_currentAge);
+                Navigator.pop(context);
+              },
               child: Text(
-                "Done",
+                "Update",
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
             )

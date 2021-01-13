@@ -10,12 +10,12 @@ class LogReport extends StatefulWidget {
 
 class _LogReportState extends State<LogReport> {
   //PickedFile _imageFile;
+  int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     Color myHexColor = Color(0xffA3E0DA);
     Color myHexColor2 = Color(0xff08AE9E);
     final AuthService _auth = AuthService();
-    int _selectedIndex = 0;
 
     List<Widget> _widgetOptions = <Widget>[
       ViewAppointment(),
@@ -23,7 +23,7 @@ class _LogReportState extends State<LogReport> {
       PainDisplay(),
     ];
 
-    void _onItemTap(int index) {
+    void _onItemTapped(int index) {
       setState(() {
         _selectedIndex = index;
       });
@@ -41,61 +41,68 @@ class _LogReportState extends State<LogReport> {
     }
 
     return Scaffold(
-      backgroundColor: myHexColor,
-      appBar: AppBar(
-          backgroundColor: myHexColor2,
-          title: Text('C U Cancer'),
-          actions: <Widget>[
-            PopupMenuButton<int>(
-              itemBuilder: (context) => [
-                PopupMenuItem(
-                  value: 1,
-                  child: Text("Profile"),
-                ),
-                PopupMenuItem(
-                  value: 2,
-                  child: Text("Sign Out"),
-                ),
-              ],
-              initialValue: 1,
-              onCanceled: () {
-                print("Menu cancelled.");
-              },
-              onSelected: (value) async {
-                if (value == 1) {
-                  print("value:$value");
-                  return _showSettingspanel();
-                } else {
-                  await _auth.signOut();
-                }
-              },
+        backgroundColor: myHexColor,
+        appBar: AppBar(
+            backgroundColor: myHexColor2,
+            title: Text(
+              'C U Cancer',
+              style: TextStyle(color: Colors.black),
             ),
-          ]),
-      body: IndexedStack(children: [
-        Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
-        )
-      ]),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: myHexColor2,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today),
-            label: 'Appointment',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.local_pharmacy),
-            label: 'Medication',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.create),
-            label: 'Notes',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.white,
-        onTap: _onItemTap,
-      ),
-    );
+            actions: <Widget>[
+              PopupMenuButton<int>(
+                icon: Icon(
+                  Icons.account_circle,
+                  color: Colors.black,
+                ),
+                color: myHexColor,
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    value: 1,
+                    child: Text("Profile"),
+                  ),
+                  PopupMenuItem(
+                    value: 2,
+                    child: Text("Sign Out"),
+                  ),
+                ],
+                initialValue: 1,
+                onCanceled: () {
+                  print("Menu cancelled.");
+                },
+                onSelected: (value) async {
+                  if (value == 1) {
+                    print("value:$value");
+                    return _showSettingspanel();
+                  } else {
+                    await _auth.signOut();
+                  }
+                },
+              ),
+            ]),
+        body: IndexedStack(children: [
+          Center(
+            child: _widgetOptions.elementAt(_selectedIndex),
+          )
+        ]),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: myHexColor2,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_today),
+              label: 'Appointment',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.healing_sharp),
+              label: 'Medication',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.article_rounded),
+              label: 'Notes',
+            ),
+          ],
+          onTap: _onItemTapped,
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.white,
+        ));
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:cu_cancer/shared/constants.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:intl/intl.dart';
 //import 'package:table_calendar/table_calendar.dart';
@@ -235,6 +234,13 @@ class _PainAddState extends State<PainAdd> {
                         ),
                         Divider(),
                         ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: myHexColor2,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 10),
+                            textStyle: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
                           //onPressed: _sendToServer(),
                           onPressed: () async {
                             _formKey.currentState.save();

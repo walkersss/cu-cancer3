@@ -15,8 +15,8 @@ class _AppointmentListState extends State<AppointmentList> {
 
     return Scaffold(
       body: ListView.builder(
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
+          //scrollDirection: Axis.vertical,
+          //shrinkWrap: true,
           itemCount: appointment.length,
           itemBuilder: (context, index) {
             return AppointmentTile(appointment: appointment[index]);

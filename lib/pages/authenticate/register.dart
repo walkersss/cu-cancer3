@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:cu_cancer/services/auth.dart';
 import 'package:cu_cancer/shared/loading.dart';
 import 'package:flutter/services.dart';
-import '';
 
 class Register extends StatefulWidget {
   final Function toggleView;

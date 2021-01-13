@@ -33,6 +33,7 @@ class _AddMedicationState extends State<AddMedication> {
   ];
 
   final _formKey = GlobalKey<FormBuilderState>();
+  Color myHexColor2 = Color(0xff08AE9E);
   final format = DateFormat.yMd();
   final format2 = DateFormat("hh:mm a");
   FocusNode myFocusNode;
@@ -227,6 +228,13 @@ class _AddMedicationState extends State<AddMedication> {
                         ),
                         Divider(),
                         ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: myHexColor2,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 10),
+                            textStyle: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
                           onPressed: () async {
                             _formKey.currentState.save();
                             if (_formKey.currentState.validate()) {

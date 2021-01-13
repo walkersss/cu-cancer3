@@ -3,15 +3,11 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 import 'package:cu_cancer/models/app_event.dart';
 import 'package:cu_cancer/services/appEvent_firestore.dart';
-import 'package:cu_cancer/services/database.dart';
 import 'package:cu_cancer/models/user.dart';
 //import 'package:riverpod/riverpod.dart';
 import 'package:provider/provider.dart';
 import 'package:date_time_picker/date_time_picker.dart';
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
-import 'package:date_time_picker/date_time_picker.dart';
 //import 'package:firebasestarter/core/presentation/providers/providers.dart';
-import 'package:intl/intl.dart';
 
 class AddEvent extends StatefulWidget {
   final DateTime selectedDate;
@@ -23,6 +19,7 @@ class AddEvent extends StatefulWidget {
 }
 
 class _AddEventState extends State<AddEvent> {
+  Color myHexColor2 = Color(0xff08AE9E);
   final _formKey = GlobalKey<FormBuilderState>();
   final format = DateFormat.yMd();
   final format2 = DateFormat("hh:mm a");
@@ -227,6 +224,13 @@ class _AddEventState extends State<AddEvent> {
                         ),
                         Divider(),
                         ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: myHexColor2,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 10),
+                            textStyle: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
                           onPressed: () async {
                             bool validated = _formKey.currentState.validate();
                             if (validated) {
