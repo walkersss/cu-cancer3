@@ -57,6 +57,26 @@ class DatabaseServices {
     });
   }
 
+//add notes(for now it's updating)
+  Future<void> updateNotes(String location, String scale, String date,
+      String time, String desc) async {
+    return await notesCollection.document(uid).setData({
+      //await Firestore.instance.collection("notes").add({
+      'location': location,
+      'scale': scale,
+      'date': date,
+      'time': time,
+      'description': desc,
+    });
+  }
+
+  Future<void> deleteNotes(DocumentSnapshot doc) async {
+    await Firestore.instance
+        .collection("notes")
+        .document(doc.documentID)
+        .delete();
+  }
+
   //notes list from snapshot
   List<Notes> _noteListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
@@ -74,7 +94,7 @@ class DatabaseServices {
     return notesCollection.snapshots().map(_noteListFromSnapshot);
   }
 
-  //add medicine(for now it's updating)
+  //add medicine(for now it's actually adding)
   Future<void> addMedicine(String medicineName, String medicineType, int dosage,
       String time, String interval) async {
     //return await medicineCollection.document(uid).setData({
@@ -101,6 +121,26 @@ class DatabaseServices {
 
   Stream<List<Medicine>> get medicine {
     return medicineCollection.snapshots().map(_medicineListFromSnapshot);
+  }
+
+  //add medicine(for now it's updating)
+  Future<void> updateMedicine(String medicineName, String medicineType,
+      int dosage, String time, String interval) async {
+    return await medicineCollection.document(uid).setData({
+      //await Firestore.instance.collection("medicine").add({
+      'medicineName': medicineName,
+      'medicineType': medicineType,
+      'dosage': dosage,
+      'time': time,
+      'interval': interval,
+    });
+  }
+
+  Future<void> deleteMedicine(DocumentSnapshot doc) async {
+    await Firestore.instance
+        .collection("medicine")
+        .document(doc.documentID)
+        .delete();
   }
 
   Future<void> addAppointment(
@@ -133,5 +173,29 @@ class DatabaseServices {
 
   Stream<List<Appointment>> get appointment {
     return appointmentCollection.snapshots().map(_appointmentListFromSnapshot);
+  }
+
+  Future<void> updateAppointment(
+    String name,
+    String type,
+    String department,
+    String time,
+    String date,
+  ) async {
+    return await appointmentCollection.document(uid).setData({
+      // await Firestore.instance.collection("appointment").add({
+      'name': name,
+      'type': type,
+      'department': department,
+      'time': time,
+      'date': date,
+    });
+  }
+
+  Future<void> deleteAppointment(DocumentSnapshot doc) async {
+    await Firestore.instance
+        .collection("appointment")
+        .document(doc.documentID)
+        .delete();
   }
 }

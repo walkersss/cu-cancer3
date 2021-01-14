@@ -38,6 +38,10 @@ class _CalendarCardState extends State<CalendarCard> {
       body: SingleChildScrollView(
         child: Container(
           child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0),
             child: TableCalendar(
                 events: _events,
                 calendarController: _calendarController,

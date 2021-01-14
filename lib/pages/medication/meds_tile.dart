@@ -15,12 +15,35 @@ class MedsTile extends StatelessWidget {
         elevation: 15,
         color: Color(0xfffa8b2a),
         margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0),
-        child: ListTile(
-          leading: Icon(Icons.local_pharmacy_outlined),
-          title: Text('${medicine.medicineName} '),
-          subtitle: Text(
-              '${medicine.dosage} ${medicine.medicineType} ${medicine.interval}'
-              ' ${medicine.time}'),
+        child: Column(
+          children: <Widget>[
+            ListTile(
+              leading: Icon(Icons.local_pharmacy_outlined),
+              title: Text('${medicine.medicineName} '),
+              subtitle: Text(
+                  '${medicine.dosage} ${medicine.medicineType} ${medicine.interval}'
+                  ' ${medicine.time}'),
+            ),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  TextButton(
+                    child: const Text('Update'),
+                    onPressed: () {
+                      print("Update Pressed");
+                    },
+                  ),
+                  const SizedBox(width: 8),
+                  TextButton(
+                    style: ButtonStyle(),
+                    child: const Text('Delete'),
+                    onPressed: () {
+                      print("Delete Pressed");
+                    },
+                  ),
+                ]),
+          ],
         ),
       ),
     );
