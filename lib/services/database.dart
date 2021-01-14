@@ -47,7 +47,8 @@ class DatabaseServices {
   //add notes(for now it's updating)
   Future<void> addNotes(String location, String scale, String date, String time,
       String desc) async {
-    return await notesCollection.document(uid).setData({
+    // return await notesCollection.document(uid).setData({
+    await Firestore.instance.collection("notes").add({
       'location': location,
       'scale': scale,
       'date': date,
@@ -76,7 +77,8 @@ class DatabaseServices {
   //add medicine(for now it's updating)
   Future<void> addMedicine(String medicineName, String medicineType, int dosage,
       String time, String interval) async {
-    return await medicineCollection.document(uid).setData({
+    //return await medicineCollection.document(uid).setData({
+    await Firestore.instance.collection("medicine").add({
       'medicineName': medicineName,
       'medicineType': medicineType,
       'dosage': dosage,
@@ -108,7 +110,8 @@ class DatabaseServices {
     String time,
     String date,
   ) async {
-    return await appointmentCollection.document(uid).setData({
+    //return await appointmentCollection.document(uid).setData({
+    await Firestore.instance.collection("appointment").add({
       'name': name,
       'type': type,
       'department': department,

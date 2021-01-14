@@ -17,9 +17,9 @@ class MedsTile extends StatelessWidget {
         margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0),
         child: ListTile(
           leading: Icon(Icons.local_pharmacy_outlined),
-          title: Text(
-              '${medicine.medicineName} ${medicine.dosage} ${medicine.medicineType}'),
-          subtitle: Text('${medicine.interval}'
+          title: Text('${medicine.medicineName} '),
+          subtitle: Text(
+              '${medicine.dosage} ${medicine.medicineType} ${medicine.interval}'
               ' ${medicine.time}'),
         ),
       ),

@@ -4,6 +4,7 @@ import 'package:cu_cancer/pages/medication/medsList.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cu_cancer/models/notes.dart';
+import 'package:cu_cancer/pages/appointment/calendar.dart';
 import 'package:cu_cancer/pages/pain/pain_List.dart';
 import 'package:cu_cancer/pages/appointment/appointmentList.dart';
 import 'package:cu_cancer/models/appointment.dart';
@@ -106,7 +107,12 @@ class _ViewAppointmentState extends State<ViewAppointment> {
                 image: DecorationImage(
                     image: AssetImage('assets/medicalbg.jpg'),
                     fit: BoxFit.cover)),
-            child: AppointmentList()),
+            child: Column(
+              children: [
+                Expanded(flex: 2, child: CalendarCard()),
+                Expanded(flex: 1, child: AppointmentList()),
+              ],
+            )),
         floatingActionButton: FloatingActionButton(
           heroTag: "btn3",
           onPressed: () {

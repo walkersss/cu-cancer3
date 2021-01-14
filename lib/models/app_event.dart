@@ -8,8 +8,8 @@ class AppEvent {
   final String department;
   final String userID;
   final String id;
-  final String time;
-  final String date;
+  final DateTime time;
+  final DateTime date;
   AppEvent({
     this.name,
     this.type,
@@ -26,8 +26,8 @@ class AppEvent {
     String department,
     String userID,
     String id,
-    String time,
-    String date,
+    DateTime time,
+    DateTime date,
   }) {
     return AppEvent(
       name: name ?? this.name,

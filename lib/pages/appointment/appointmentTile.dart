@@ -17,8 +17,9 @@ class AppointmentTile extends StatelessWidget {
         margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0),
         child: ListTile(
           leading: Icon(Icons.calendar_today_outlined),
-          title: Text(
-              '${appointment.name} ${appointment.type} ${appointment.department} ${appointment.time} ${appointment.date}'),
+          title: Text('${appointment.name} '),
+          subtitle: Text('${appointment.type} ${appointment.department}'
+              '${appointment.time} ${appointment.date}'),
         ),
       ),
     );

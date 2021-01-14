@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:cu_cancer/models/app_event.dart';
 import 'package:cu_cancer/services/appEvent_firestore.dart';
 import 'package:cu_cancer/models/user.dart';
+import 'package:cu_cancer/services/database.dart';
 //import 'package:riverpod/riverpod.dart';
 import 'package:provider/provider.dart';
 import 'package:date_time_picker/date_time_picker.dart';
@@ -59,7 +60,8 @@ class _AddEventState extends State<AddEvent> {
   @override
   Widget build(BuildContext context) {
     User user = Provider.of<User>(context);
-    String name, type, department, time, date;
+    String name, type, department;
+    String time, date;
     myFocusNode = FocusNode();
 
     return Scaffold(
@@ -193,7 +195,7 @@ class _AddEventState extends State<AddEvent> {
                           // initialTime: TimeOfDay(hour: 8, minute: 0),
                           initialValue: DateTime.now(),
                           format: DateFormat('jms'),
-                          onSaved: (val) => DateFormat.jm().format(val),
+                          onSaved: (val) => time = DateFormat.jm().format(val),
                           // enabled: true,
                         ),
                         Divider(),
@@ -220,7 +222,8 @@ class _AddEventState extends State<AddEvent> {
                             ),
                           ),
                           format: DateFormat('EEEE, MM/dd/yyyy'),
-                          onSaved: (val) => DateFormat.yMMMd().format(val),
+                          onSaved: (val) =>
+                              time = DateFormat.yMMMMd().format(val),
                         ),
                         Divider(),
                         ElevatedButton(
@@ -241,6 +244,13 @@ class _AddEventState extends State<AddEvent> {
                               //      (data['time'] as DateTime).millisecondsSinceEpoch;
                               //data['user_id'] =
                               //   context.read(userRepoProvider).user.id;
+                              DatabaseServices(uid: user.uid).addAppointment(
+                                  name, type, department, time, date);
+                              print(name);
+                              print(type);
+                              print(department);
+                              print(time);
+                              print(date);
 
                               await eventDBS.create(data);
 

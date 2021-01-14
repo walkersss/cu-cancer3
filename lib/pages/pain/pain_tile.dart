@@ -18,12 +18,12 @@ class PainTile extends StatelessWidget {
         margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
         child: ListTile(
           leading: Icon(Icons.description_outlined),
-          title: Text('${notes.date} ${notes.time}'),
+          title: Text('Date: ${notes.date}   Time: ${notes.time}'),
           subtitle: Text('Location: '
-              ' ${notes.location}'
+              '${notes.location}'
               ', Scale: '
               '${notes.scale}'
-              ',Notes: '
+              ', Notes: '
               '${notes.description}'),
         ),
       ),

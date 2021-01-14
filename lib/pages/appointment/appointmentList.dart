@@ -13,14 +13,17 @@ class _AppointmentListState extends State<AppointmentList> {
   Widget build(BuildContext context) {
     final appointment = Provider.of<List<Appointment>>(context) ?? [];
 
-    return Scaffold(
-      body: ListView.builder(
-          //scrollDirection: Axis.vertical,
-          //shrinkWrap: true,
-          itemCount: appointment.length,
-          itemBuilder: (context, index) {
-            return AppointmentTile(appointment: appointment[index]);
-          }),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          return ListView.builder(
+              itemCount: appointment.length,
+              itemBuilder: (context, index) {
+                return AppointmentTile(appointment: appointment[index]);
+              });
+        },
+      ),
     );
   }
 }
