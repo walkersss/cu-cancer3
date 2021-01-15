@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:cu_cancer/models/notes.dart';
+import 'package:cu_cancer/services/database.dart';
+import 'package:cu_cancer/models/user.dart';
+import 'package:cu_cancer/services/database.dart';
+import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PainTile extends StatelessWidget {
   final Notes notes;
+
   PainTile({this.notes});
 
   @override
   Widget build(BuildContext context) {
+    User user = Provider.of<User>(context);
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Card(
@@ -34,13 +41,19 @@ class PainTile extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   TextButton(
+<<<<<<< HEAD
                     style: TextButton.styleFrom(primary: Colors.blue[700]),
                     child: const Text('Update'),
+=======
+                    child: const Text('Update & Delete'),
+>>>>>>> cb846ec457854e8db0978b9c88843684a9f0edad
                     onPressed: () {
                       print("Update Pressed");
+                      Navigator.pushNamed(context, '/updatePain');
                     },
                   ),
                   const SizedBox(width: 8),
+<<<<<<< HEAD
                   TextButton(
                     style: TextButton.styleFrom(primary: Colors.red[700]),
                     child: const Text('Delete'),
@@ -48,6 +61,16 @@ class PainTile extends StatelessWidget {
                       print("Delete Pressed");
                     },
                   ),
+=======
+                  //TextButton(
+                  //  style: ButtonStyle(),
+                  //  child: const Text('Delete'),
+                  //  onPressed: () {
+                  //    print("Delete Pressed");
+                  // DatabaseServices(uid: user.uid).deleteNotes(doc.ID);
+                  //  },
+                  //  ),
+>>>>>>> cb846ec457854e8db0978b9c88843684a9f0edad
                 ]),
           ],
         ),

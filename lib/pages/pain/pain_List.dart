@@ -16,7 +16,13 @@ class _PainListState extends State<PainList> {
     return ListView.builder(
       itemCount: notes.length,
       itemBuilder: (context, index) {
-        return PainTile(notes: notes[index]);
+        //String e = notes[index] ;
+        return
+            //Dismissible(
+            //key: Key(e[index]),
+            //child:
+            PainTile(notes: notes[index]);
+        //);
       },
     );
   }
