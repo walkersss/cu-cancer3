@@ -34,6 +34,7 @@ dependencies:
   flutter_launcher_icons: ^0.8.1
   riverpod: ^0.12.1
   rflutter_alert: ^1.1.0
+  animated_bottom_navigation_bar: ^0.2.1
 
 
   # The following adds the Cupertino Icons font to your application.

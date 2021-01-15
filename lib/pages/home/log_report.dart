@@ -10,7 +10,7 @@ class LogReport extends StatefulWidget {
 
 class _LogReportState extends State<LogReport> {
   //PickedFile _imageFile;
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
   @override
   Widget build(BuildContext context) {
     Color myHexColor = Color(0xffA3E0DA);
