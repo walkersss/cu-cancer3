@@ -19,7 +19,7 @@ import 'package:cu_cancer/pages/pain/pain_display.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
+import 'package:cu_cancer/pages/pain/updatePain.dart';
 //final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 //  FlutterLocalNotificationsPlugin();
 
@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
           '/painHome': (context) => Pain(),
           '/logReport': (context) => LogReport(),
           '/painAdd': (context) => PainAdd(),
+          '/updatePain': (context) => UpdatePain(),
           '/addmedication': (context) => AddMedication(),
           '/viewmedication': (context) => ViewMedication(),
           '/appointment': (context) => ViewAppointment(),

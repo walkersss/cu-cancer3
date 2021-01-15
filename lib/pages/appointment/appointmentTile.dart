@@ -28,19 +28,19 @@ class AppointmentTile extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 TextButton(
-                  child: const Text('Update'),
+                  child: const Text('Update & Delete'),
                   onPressed: () {
                     print("Update Pressed");
                   },
                 ),
                 const SizedBox(width: 8),
-                TextButton(
-                  style: ButtonStyle(),
-                  child: const Text('Delete'),
-                  onPressed: () {
-                    print("Delete Pressed");
-                  },
-                ),
+                //TextButton(
+                //  style: ButtonStyle(),
+                //  child: const Text('Delete'),
+                //  onPressed: () {
+                //    print("Delete Pressed");
+                //  },
+                //),
               ]),
         ]),
       ),

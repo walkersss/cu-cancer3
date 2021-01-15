@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:cu_cancer/models/notes.dart';
+import 'package:cu_cancer/services/database.dart';
+import 'package:cu_cancer/models/user.dart';
+import 'package:cu_cancer/services/database.dart';
+import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PainTile extends StatelessWidget {
   final Notes notes;
+
   PainTile({this.notes});
 
   @override
   Widget build(BuildContext context) {
+    User user = Provider.of<User>(context);
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Card(
@@ -33,19 +40,21 @@ class PainTile extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   TextButton(
-                    child: const Text('Update'),
+                    child: const Text('Update & Delete'),
                     onPressed: () {
                       print("Update Pressed");
+                      Navigator.pushNamed(context, '/updatePain');
                     },
                   ),
                   const SizedBox(width: 8),
-                  TextButton(
-                    style: ButtonStyle(),
-                    child: const Text('Delete'),
-                    onPressed: () {
-                      print("Delete Pressed");
-                    },
-                  ),
+                  //TextButton(
+                  //  style: ButtonStyle(),
+                  //  child: const Text('Delete'),
+                  //  onPressed: () {
+                  //    print("Delete Pressed");
+                  // DatabaseServices(uid: user.uid).deleteNotes(doc.ID);
+                  //  },
+                  //  ),
                 ]),
           ],
         ),
