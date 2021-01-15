@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cu_cancer/shared/constants.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SettingsForm extends StatefulWidget {
   @override
@@ -10,6 +11,20 @@ class SettingsForm extends StatefulWidget {
 }
 
 class _SettingsFormState extends State<SettingsForm> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  FirebaseUser user;
+
+  @override
+  void initState() {
+    super.initState();
+    initUser();
+  }
+
+  initUser() async {
+    user = await _auth.currentUser();
+    setState(() {});
+  }
+
   final _formkey = GlobalKey<FormState>();
   final List<String> status = ['Survivor', 'Patients', 'Guardian'];
 
@@ -24,10 +39,13 @@ class _SettingsFormState extends State<SettingsForm> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        child: Column(
-          children: [
-            Center(
-              child: Stack(children: <Widget>[
+        child: Container(
+          width: double.infinity,
+          height: 250,
+          child: Center(
+              child: Column(
+            children: <Widget>[
+              Stack(children: <Widget>[
                 CircleAvatar(
                   backgroundImage: _imageFile == null
                       ? AssetImage('assets/ic_launcher.png')
@@ -51,78 +69,82 @@ class _SettingsFormState extends State<SettingsForm> {
                       ),
                     ))
               ]),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Text(
-              'NAME: (Name)',
-              style: TextStyle(
-                color: Colors.black,
-                letterSpacing: 2,
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
+              SizedBox(
+                height: 15,
               ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              'STATUS: SURVIVOR',
-              style: TextStyle(
-                  color: myHexColor2,
+              Text(
+                '${user?.email}',
+                style: TextStyle(
+                  color: Colors.black,
                   letterSpacing: 2,
                   fontSize: 15,
-                  fontWeight: FontWeight.bold),
-            ),
-            FlatButton.icon(
-                color: myHexColor2,
-                onPressed: () {
-                  _openPopup(context);
-                },
-                icon: Icon(Icons.edit),
-                label: Text('Edit profile')),
-          ],
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'STATUS: SURVIVOR',
+                style: TextStyle(
+                    color: myHexColor2,
+                    letterSpacing: 2,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold),
+              ),
+              FlatButton.icon(
+                  color: myHexColor2,
+                  onPressed: () {
+                    _openPopup(context);
+                  },
+                  icon: Icon(Icons.edit),
+                  label: Text('Edit profile')),
+            ],
+          )),
         ),
       ),
     );
   }
 
   Widget bottomSheet(context) {
-    return Container(
-      height: 100.0,
-      width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 20,
-      ),
-      child: Column(
-        children: <Widget>[
-          Text('Choose profile photo', style: TextStyle(fontSize: 20.0)),
-          SizedBox(
-            height: 2.0,
+    return Column(
+      children: [
+        Container(
+          height: 100.0,
+          width: MediaQuery.of(context).size.width,
+          margin: EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 20,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Column(
             children: <Widget>[
-              ElevatedButton.icon(
-                icon: Icon(Icons.camera),
-                onPressed: () {
-                  takePhoto(ImageSource.camera);
-                },
-                label: Text('Camera'),
+              Text('Choose profile photo', style: TextStyle(fontSize: 20.0)),
+              SizedBox(
+                height: 2.0,
               ),
-              ElevatedButton.icon(
-                onPressed: () {
-                  takePhoto(ImageSource.gallery);
-                },
-                icon: Icon(Icons.image),
-                label: Text('Gallery'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  ElevatedButton.icon(
+                    icon: Icon(Icons.camera),
+                    onPressed: () {
+                      takePhoto(ImageSource.camera);
+                    },
+                    label: Text('Camera'),
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      takePhoto(ImageSource.gallery);
+                    },
+                    icon: Icon(Icons.image),
+                    label: Text('Gallery'),
+                  )
+                ],
               )
             ],
-          )
-        ],
-      ),
+          ),
+        ),
+      ],
     );
   }
 

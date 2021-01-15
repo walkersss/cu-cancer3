@@ -14,11 +14,12 @@ class PainTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(15.0),
         ),
         elevation: 15,
-        color: Color(0xfff0e037),
+        color: Color(0xffF6EC87),
         margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
         child: Column(
           children: <Widget>[
             ListTile(
+              contentPadding: EdgeInsets.fromLTRB(7, 5, 7, 0),
               leading: Icon(Icons.description_outlined),
               title: Text('Date: ${notes.date}   Time: ${notes.time}'),
               subtitle: Text('Location: '
@@ -33,6 +34,7 @@ class PainTile extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   TextButton(
+                    style: TextButton.styleFrom(primary: Colors.blue[700]),
                     child: const Text('Update'),
                     onPressed: () {
                       print("Update Pressed");
@@ -40,7 +42,7 @@ class PainTile extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   TextButton(
-                    style: ButtonStyle(),
+                    style: TextButton.styleFrom(primary: Colors.red[700]),
                     child: const Text('Delete'),
                     onPressed: () {
                       print("Delete Pressed");

@@ -13,11 +13,12 @@ class MedsTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(15.0),
         ),
         elevation: 15,
-        color: Color(0xfffa8b2a),
+        color: Color(0xffFCB97F),
         margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0),
         child: Column(
           children: <Widget>[
             ListTile(
+              contentPadding: EdgeInsets.fromLTRB(7, 10, 7, 0),
               leading: Icon(Icons.local_pharmacy_outlined),
               title: Text('${medicine.medicineName} '),
               subtitle: Text(
@@ -29,6 +30,7 @@ class MedsTile extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   TextButton(
+                    style: TextButton.styleFrom(primary: Colors.blue[700]),
                     child: const Text('Update'),
                     onPressed: () {
                       print("Update Pressed");
@@ -36,7 +38,7 @@ class MedsTile extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   TextButton(
-                    style: ButtonStyle(),
+                    style: TextButton.styleFrom(primary: Colors.red[700]),
                     child: const Text('Delete'),
                     onPressed: () {
                       print("Delete Pressed");
