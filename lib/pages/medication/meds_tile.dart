@@ -30,18 +30,13 @@ class MedsTile extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   TextButton(
-<<<<<<< HEAD
                     style: TextButton.styleFrom(primary: Colors.blue[700]),
-                    child: const Text('Update'),
-=======
                     child: const Text('Update & Delete'),
->>>>>>> cb846ec457854e8db0978b9c88843684a9f0edad
                     onPressed: () {
                       print("Update Pressed");
                     },
                   ),
                   const SizedBox(width: 8),
-<<<<<<< HEAD
                   TextButton(
                     style: TextButton.styleFrom(primary: Colors.red[700]),
                     child: const Text('Delete'),
@@ -49,7 +44,6 @@ class MedsTile extends StatelessWidget {
                       print("Delete Pressed");
                     },
                   ),
-=======
                   //TextButton(
                   //  style: ButtonStyle(),
                   //  child: const Text('Delete'),
@@ -57,7 +51,6 @@ class MedsTile extends StatelessWidget {
                   //    print("Delete Pressed");
                   //  },
                   //),
->>>>>>> cb846ec457854e8db0978b9c88843684a9f0edad
                 ]),
           ],
         ),
