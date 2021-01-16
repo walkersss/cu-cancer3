@@ -35,13 +35,13 @@ class AppointmentTile extends StatelessWidget {
                   },
                 ),
                 const SizedBox(width: 8),
-                TextButton(
-                  child: const Text('Delete'),
-                  style: TextButton.styleFrom(primary: Colors.red[700]),
-                  onPressed: () {
-                    print("Delete Pressed");
-                  },
-                ),
+                // TextButton(
+                //  child: const Text('Delete'),
+                //  style: TextButton.styleFrom(primary: Colors.red[700]),
+                //  onPressed: () {
+                //    print("Delete Pressed");
+                //  },
+                //),
               ]),
         ]),
       ),

@@ -48,14 +48,14 @@ class PainTile extends StatelessWidget {
                       Navigator.pushNamed(context, '/updatePain');
                     },
                   ),
-                  const SizedBox(width: 8),
-                  TextButton(
-                    style: TextButton.styleFrom(primary: Colors.red[700]),
-                    child: const Text('Delete'),
-                    onPressed: () {
-                      print("Delete Pressed");
-                    },
-                  ),
+                  //const SizedBox(width: 8),
+                  //TextButton(
+                  //  style: TextButton.styleFrom(primary: Colors.red[700]),
+                  //  child: const Text('Delete'),
+                  //  onPressed: () {
+                  //    print("Delete Pressed");
+                  //  },
+                  //),
                   //TextButton(
                   //  style: ButtonStyle(),
                   //  child: const Text('Delete'),
