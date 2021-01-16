@@ -118,7 +118,7 @@ class _SettingsFormState extends State<SettingsForm> {
     return Column(
       children: [
         Container(
-          height: 100.0,
+          height: 73.0,
           width: MediaQuery.of(context).size.width,
           margin: EdgeInsets.symmetric(
             horizontal: 20,
@@ -140,7 +140,13 @@ class _SettingsFormState extends State<SettingsForm> {
                     },
                     label: Text('Camera'),
                   ),
+                  SizedBox(
+                    width: 8,
+                  ),
                   ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      primary: myHexColor2,
+                    ),
                     onPressed: () {
                       takePhoto(ImageSource.gallery);
                     },
