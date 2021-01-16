@@ -7,6 +7,7 @@ import 'package:cu_cancer/models/appointment.dart';
 
 class DatabaseServices {
   final String uid;
+  var name;
   DatabaseServices({this.uid});
   //collection reference
   final CollectionReference cancerCollection =
@@ -27,6 +28,13 @@ class DatabaseServices {
       'name': name,
       'age': age,
     });
+  }
+
+  Future getName() async {
+    DocumentSnapshot ds =
+        await Firestore.instance.collection('cell').document(uid).get();
+    name = ds.data['name'];
+    return name;
   }
 
   //cell list from snapshot

@@ -4,6 +4,8 @@ import 'package:cu_cancer/shared/constants.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cu_cancer/services/database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SettingsForm extends StatefulWidget {
   @override
@@ -12,6 +14,7 @@ class SettingsForm extends StatefulWidget {
 
 class _SettingsFormState extends State<SettingsForm> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  String uid;
   FirebaseUser user;
 
   @override
@@ -72,14 +75,19 @@ class _SettingsFormState extends State<SettingsForm> {
               SizedBox(
                 height: 15,
               ),
-              Text(
-                '${user?.email}',
-                style: TextStyle(
-                  color: Colors.black,
-                  letterSpacing: 2,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                ),
+              Column(
+                children: [
+                  Text(
+                    //name.getName();
+                    '${user?.email}',
+                    style: TextStyle(
+                      color: Colors.black,
+                      letterSpacing: 2,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
               SizedBox(
                 height: 10,
