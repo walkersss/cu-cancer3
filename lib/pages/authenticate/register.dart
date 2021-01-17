@@ -77,7 +77,7 @@ class _RegisterState extends State<Register> {
                                 )),
                           ),
                           SizedBox(
-                            height: 19,
+                            height: 5,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

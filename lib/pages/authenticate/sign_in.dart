@@ -68,14 +68,14 @@ class _SignInState extends State<SignIn> {
                             )),
                       ),
                       Padding(
-                        padding: EdgeInsets.fromLTRB(5, 60, 5, 49),
+                        padding: EdgeInsets.fromLTRB(5, 10, 5, 49),
                         child: Container(
                             alignment: Alignment.center,
                             //padding: EdgeInsets.fromLTRB(5, 25, 5, 0),
                             child: Text(
                               'Welcome to C U Cancer',
                               style: TextStyle(
-                                  color: Colors.blue,
+                                  color: myHexColor2,
                                   fontWeight: FontWeight.w800,
                                   fontSize: 30),
                             )),

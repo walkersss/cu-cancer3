@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cu_cancer/models/notes.dart';
-import 'package:cu_cancer/services/database.dart';
 import 'package:cu_cancer/models/user.dart';
-import 'package:cu_cancer/services/database.dart';
 import 'package:provider/provider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PainTile extends StatelessWidget {
   final Notes notes;

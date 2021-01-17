@@ -4,8 +4,6 @@ import 'package:cu_cancer/shared/constants.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cu_cancer/services/database.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SettingsForm extends StatefulWidget {
   @override
