@@ -61,7 +61,7 @@ class _RegisterState extends State<Register> {
                           Center(
                             child: Container(
                                 alignment: Alignment.center,
-                                padding: EdgeInsets.fromLTRB(0, 0, 0, 55),
+                                padding: EdgeInsets.fromLTRB(0, 20, 0, 35),
                                 child: Stack(
                                   children: [
                                     Align(
@@ -75,9 +75,6 @@ class _RegisterState extends State<Register> {
                                     ),
                                   ],
                                 )),
-                          ),
-                          SizedBox(
-                            height: 5,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

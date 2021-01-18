@@ -53,7 +53,7 @@ class _SignInState extends State<SignIn> {
                       Center(
                         child: Container(
                             alignment: Alignment.center,
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 55),
+                            padding: EdgeInsets.fromLTRB(0, 20, 0, 45),
                             child: Stack(
                               children: [
                                 Align(
@@ -68,7 +68,7 @@ class _SignInState extends State<SignIn> {
                             )),
                       ),
                       Padding(
-                        padding: EdgeInsets.fromLTRB(5, 10, 5, 49),
+                        padding: EdgeInsets.fromLTRB(5, 10, 5, 45),
                         child: Container(
                             alignment: Alignment.center,
                             //padding: EdgeInsets.fromLTRB(5, 25, 5, 0),
